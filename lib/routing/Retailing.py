@@ -73,17 +73,18 @@ def getCosts(dicToProcess, date=['04/01/22'], campus=['G. Charpak']):
         return res
     elif len(campus) == 1 and len(date) != 1:
         for camp in campus:
-            bufferDate = {}
             for day in date:
+                bufferDate = {}
                 for prod in dicToProcess[camp][day]:
                     bufferDate[prod] = dicToProcess[camp][day][prod]
                 res[day] = bufferDate
         return res
     else:
-        bufferCampus = {}
+
         for camp in campus:
-            bufferDate = {}
+            bufferCampus = {}
             for day in date:
+                bufferDate = {}
                 for prod in dicToProcess[camp][day]:
                     bufferDate[prod] = dicToProcess[camp][day][prod]
                 bufferCampus[day] = bufferDate
