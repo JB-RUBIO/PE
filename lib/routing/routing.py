@@ -28,6 +28,12 @@ N3 = Arc(1,4,1)
 N4 = Arc(2,3,1)
 
 array = [N1,N2,N3,N4]
+insertion_sort(array, lambda a,b : a.c > b.c)
+
+for arc in array:
+    print(arc)
+
+
 
 Producers = ["1", "2", "3", "4", "5"]
 
@@ -80,26 +86,18 @@ for i in vehicle:
     if(vehicle[i]==1):
         Road.append([i])
         SatisfiedDemand.append(demand[i])
-print(len(Producers))
-print(Road)
+
 for i in range(len(Road)):
     print("i=",i)
-    print(Road)
-    for j in Producers: #producer = liste str
-        print(Road)
-        print("j=",j)
-        for k in range(1,len(Producers)-i-1):
-            print(Road)
-            if(j not in Road[i] and k not in Road[i]):
-                print("k=",k)
-                to_add = Road[i] + [Producers[k]]
-                Road.insert(i+1,to_add)
-
-                print(Road)
-        else:
-            pass
-            
+    cpt = len(Producers) - 1
+    while(cpt>=0):
+        print("cpt=",cpt)
+        if(Producers[cpt] not in Road[i]):
+            Road[i].append(Producers[cpt])
+        cpt -= 1
 print(Road)
+
+
 
 
 
