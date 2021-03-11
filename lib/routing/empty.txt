@@ -1,0 +1,1 @@
+On calcule la route optimale pour chaque producteur puis on choisit la tournée avec le moindre coût
