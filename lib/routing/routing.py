@@ -20,6 +20,21 @@ def insertion_sort(array, compare_function):
             
         array[currentPosition] = currentValue
 
+def costProcess(road):
+    cost = 0
+    lastNode = road[0]
+    for i in road:
+        if(i=='Campus'):
+            cost += transportation_costs[int(lastNode[5:])][-1]
+            lastNode = i
+        elif(i in road):
+            cost += transportation_costs[int(lastNode[5:])][int(i[5:])]
+            lastNode = i
+        else:
+            lastNode = i
+    return cost
+        
+
 
 
 N1 = Arc(1,2,3)
@@ -35,32 +50,22 @@ for arc in array:
 
 
 
-Producers = ["1", "2", "3", "4", "5"]
+Producers = ["Prod_0", "Prod_1", "Prod_2", "Prod_3", "Prod_4"]
 
-supply = {"1": 500,
-          "2": 900,
-          "3": 1800,
-          "4": 200,
-          "5": 700}
+supply = {"Prod_0": 500,
+          "Prod_1": 900,
+          "Prod_2": 1800,
+          "Prod_3": 200,
+          "Prod_4": 700}
 
-vehicle = {"1": 1,
-          "2": 0,
-          "3": 1,
-          "4": 0,
-          "5": 0}
 
-Capacity = {"1": 5000,
-          "2": 0,
-          "3": 3000,
-          "4": 0,
-          "5": 1000}
+Capacity = {"Prod_0": 5000,
+          "Prod_1": 0,
+          "Prod_2": 3000,
+          "Prod_3": 0,
+          "Prod_4": 1000}
 
-demand = {"1":500,
-          "2":900,
-          "3":1800,
-          "4":200,
-          "5":700,}
-
+#La dernière colonne/ligne et transportation_costs correspond au campus
 transportation_costs = [[0, 5, 9, 6, 4, 11],
                         [5, 0, 15, 7, 8, 6],
                         [10, 15, 0, 4, 16, 11],
@@ -69,34 +74,37 @@ transportation_costs = [[0, 5, 9, 6, 4, 11],
                         [11, 5, 11, 5, 16, 0]
                        ]
 
-costs = pulp.makeDict([["Campus"] + Producers, ["Campus"] + Producers], transportation_costs, 0)
-
 distance_max = 25
 Np = len(Producers)
 
-Vehicle = [(i, k) for i in ["Campus"] + Producers for k in Producers]
-Road = []
+Road = {}
 RoadCost = []
-SatisfiedDemand = []
+SatisfiedDemand = {}
 
 
 
 #Créé une route partant du producteur ayant un véhicule
-for i in vehicle:
-    if(vehicle[i]==1):
-        Road.append([i])
-        SatisfiedDemand.append(demand[i])
 
-for i in range(len(Road)):
-    print("i=",i)
-    cpt = len(Producers) - 1
-    while(cpt>=0):
-        print("cpt=",cpt)
-        if(Producers[cpt] not in Road[i]):
-            Road[i].append(Producers[cpt])
-        cpt -= 1
+for i in Capacity:
+    if(Capacity[i]!=0):
+        if(i not in SatisfiedDemand):
+            SatisfiedDemand[i] = supply[i]
+        else:
+            SatisfiedDemand[i] += supply[i]
+        Road[i] = [i]
+
+print(SatisfiedDemand)
+for i in Road:
+    for j in Producers:
+        if(j not in Road[i]):
+                Road[i].append(j)
+
+for i in Road:
+    Road[i].append('Campus')
 print(Road)
 
+for i in Road:
+    print(costProcess(Road[i]))
 
 
 
