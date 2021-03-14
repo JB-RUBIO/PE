@@ -1,4 +1,6 @@
 import pandas as pd
+from itertools import chain, combinations
+from pathlib import Path
 
 
 def readFile(path):
@@ -91,10 +93,19 @@ def getCosts(dicToProcess, date=['04/01/22'], campus=['G. Charpak']):
             res[camp] = bufferCampus
         return res
 
+# fonction to get subsets
 
-if __name__ == "__main__":
+
+def powerset(iterable):
+    """powerset([1,2,3]) --> (1,2) (1,3) (2,3) (1,2,3)"""
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(2, len(s)))
+
+
+def getRes(date, campus=['G. Charpak']):
     # File path delaration
-    path = r'res\routing\DailyGroupedOrders.xlsx'
+    CUR_DIR = Path(__file__).parent
+    path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
 
     dicFile = readFile(path)
     dicFile = preProcessing(dicFile)
@@ -108,5 +119,3 @@ if __name__ == "__main__":
 
     res = getCosts(dicToProcess, [dateMin])
     print(res)
-
-    print('The main execution routine is finished')
