@@ -102,11 +102,11 @@ if __name__ == "__main__":
     dicProducersLists = createDicProducersLists(dicFile)
     dicToProcess = createDicCostsLists(dicFile, dicProducersLists)
 
-    dateMin = '01/01/22'
+    dateMin = '04/01/22'
     dateMax = '30/01/22'
     timeInterval = createTimeInterval(dicToProcess, dateMin, dateMax)
 
-    res = getCosts(dicToProcess, timeInterval)
+    res = getCosts(dicToProcess, [dateMin])
     print(res)
 
     print('The main execution routine is finished')
