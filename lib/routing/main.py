@@ -1,10 +1,11 @@
 import pulp
 import Retailing as rt
 
-Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
-# Campus = ['G. Charpak']
+# Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
+# Telecom sud Paris
+Campus = ['Telecom sud Paris']
 dateMin = '04/01/22'
-dateMax = '07/01/22'
+dateMax = '05/01/22'
 
 
 dicProducers = rt.getProducersLists()
@@ -13,7 +14,9 @@ dicCostsMatrix = rt.getTransportationCosts(Campus)
 dicCapacities = rt.getCapacities(Campus)
 dicVehicle = rt.getVehicles(dicCapacities)
 
-print(dicProducers)
+print(Campus)
+
+# print(dicProducers)
 # # if the producers have an available vehicle or not
 # vehicle = {Producers[0]: 1,
 #            Producers[1]: 0,
@@ -42,28 +45,35 @@ print(dicProducers)
 # print('dicDemand', dicDemand)
 
 
-for campus in Campus:
-    for day in ['04/01/22', '05/01/22', '06/01/22']:
-        print('campus : ', campus, 'jour : ', day)
-        supply = dicDemand[campus][day]
+for camp in Campus:
+    campus = [camp]
+    for day in ['04/01/22']:
+        print('campus : ', camp, 'jour : ', day)
+        supply = dicDemand[camp][day]
         # print('supply', supply)
 
-        Producers = dicProducers[campus]
+        Producers = dicProducers[camp]
         # print('producers', Producers)
 
-        vehicle = dicVehicle[campus]
+        vehicle = dicVehicle[camp]
         # print('vehicle', vehicle)
 
-        Capacity = dicCapacities[campus]
+        Capacity = dicCapacities[camp]
         # print('Capacities', Capacity)
 
-        transportation_costs = dicCostsMatrix[campus]
+        transportation_costs = dicCostsMatrix[camp]
         # print('Matrix', transportation_costs)
+
+        print(campus)
+        print(Producers)
+        print(transportation_costs)
+        print(Capacity)
+        print(supply)
 
         costs = pulp.makeDict([campus + Producers, campus +
                                Producers], transportation_costs, 0)
 
-        distance_max = 2000
+        distance_max = 1000000
         Np = len(Producers)
 
         Vehicle = [(i, k) for i in campus + Producers for k in Producers]

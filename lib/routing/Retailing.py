@@ -175,7 +175,7 @@ def getDemand(dateMin, dateMax, campus=['G. Charpak']):
 
     dicProducersLists = createDicProducersLists(dicFile)
     dicToProcess = createDicCostsLists(dicFile, dicProducersLists)
-
+    print(dicToProcess)
     # dateMin = '04/01/22'
     # dateMax = '30/01/22'
     timeInterval = createTimeInterval(dicToProcess, dateMin, dateMax)
