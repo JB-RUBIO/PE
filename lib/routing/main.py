@@ -1,19 +1,19 @@
 import pulp
 import Retailing as rt
 
-campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
-# campus = ['G. Charpak']
+Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
+# Campus = ['G. Charpak']
 dateMin = '04/01/22'
 dateMax = '07/01/22'
 
 
 dicProducers = rt.getProducersLists()
-dicDemand = rt.getDemand(dateMin, dateMax, campus)
-dicCostsMatrix = rt.getTransportationCosts(campus)
-dicCapacities = rt.getCapacities(campus)
+dicDemand = rt.getDemand(dateMin, dateMax, Campus)
+dicCostsMatrix = rt.getTransportationCosts(Campus)
+dicCapacities = rt.getCapacities(Campus)
 dicVehicle = rt.getVehicles(dicCapacities)
 
-
+print(dicProducers)
 # # if the producers have an available vehicle or not
 # vehicle = {Producers[0]: 1,
 #            Producers[1]: 0,
@@ -42,22 +42,22 @@ dicVehicle = rt.getVehicles(dicCapacities)
 # print('dicDemand', dicDemand)
 
 
-for camp in campus:
+for campus in Campus:
     for day in ['04/01/22', '05/01/22', '06/01/22']:
-        print('campus : ', camp, 'jour : ', day)
-        supply = dicDemand[camp][day]
+        print('campus : ', campus, 'jour : ', day)
+        supply = dicDemand[campus][day]
         # print('supply', supply)
 
-        Producers = dicProducers[camp]
+        Producers = dicProducers[campus]
         # print('producers', Producers)
 
-        vehicle = dicVehicle[camp]
+        vehicle = dicVehicle[campus]
         # print('vehicle', vehicle)
 
-        Capacity = dicCapacities[camp]
+        Capacity = dicCapacities[campus]
         # print('Capacities', Capacity)
 
-        transportation_costs = dicCostsMatrix[camp]
+        transportation_costs = dicCostsMatrix[campus]
         # print('Matrix', transportation_costs)
 
         costs = pulp.makeDict([campus + Producers, campus +
