@@ -1,154 +1,162 @@
 \* Coopain_VRP_Problem *\
 Minimize
-Sum_of_Transporting_Costs: 5 Route_G._Charpak_Prod_0_Prod_0
- + 5 Route_G._Charpak_Prod_0_Prod_1 + 5 Route_G._Charpak_Prod_0_Prod_2
- + 5 Route_G._Charpak_Prod_0_Prod_3 + 5 Route_G._Charpak_Prod_0_Prod_4
- + 7 Route_G._Charpak_Prod_1_Prod_0 + 7 Route_G._Charpak_Prod_1_Prod_1
- + 7 Route_G._Charpak_Prod_1_Prod_2 + 7 Route_G._Charpak_Prod_1_Prod_3
- + 7 Route_G._Charpak_Prod_1_Prod_4 + 5 Route_G._Charpak_Prod_2_Prod_0
- + 5 Route_G._Charpak_Prod_2_Prod_1 + 5 Route_G._Charpak_Prod_2_Prod_2
- + 5 Route_G._Charpak_Prod_2_Prod_3 + 5 Route_G._Charpak_Prod_2_Prod_4
- + 5 Route_G._Charpak_Prod_3_Prod_0 + 5 Route_G._Charpak_Prod_3_Prod_1
- + 5 Route_G._Charpak_Prod_3_Prod_2 + 5 Route_G._Charpak_Prod_3_Prod_3
- + 5 Route_G._Charpak_Prod_3_Prod_4 + 5 Route_G._Charpak_Prod_4_Prod_0
- + 5 Route_G._Charpak_Prod_4_Prod_1 + 5 Route_G._Charpak_Prod_4_Prod_2
- + 5 Route_G._Charpak_Prod_4_Prod_3 + 5 Route_G._Charpak_Prod_4_Prod_4
- + 5 Route_Prod_0_G._Charpak_Prod_0 + 5 Route_Prod_0_G._Charpak_Prod_1
- + 5 Route_Prod_0_G._Charpak_Prod_2 + 5 Route_Prod_0_G._Charpak_Prod_3
- + 5 Route_Prod_0_G._Charpak_Prod_4 + 2 Route_Prod_0_Prod_1_Prod_0
- + 2 Route_Prod_0_Prod_1_Prod_1 + 2 Route_Prod_0_Prod_1_Prod_2
- + 2 Route_Prod_0_Prod_1_Prod_3 + 2 Route_Prod_0_Prod_1_Prod_4
- + 111 Route_Prod_0_Prod_2_Prod_0 + 111 Route_Prod_0_Prod_2_Prod_1
- + 111 Route_Prod_0_Prod_2_Prod_2 + 111 Route_Prod_0_Prod_2_Prod_3
- + 111 Route_Prod_0_Prod_2_Prod_4 + 11 Route_Prod_0_Prod_4_Prod_0
- + 11 Route_Prod_0_Prod_4_Prod_1 + 11 Route_Prod_0_Prod_4_Prod_2
- + 11 Route_Prod_0_Prod_4_Prod_3 + 11 Route_Prod_0_Prod_4_Prod_4
- + 7 Route_Prod_1_G._Charpak_Prod_0 + 7 Route_Prod_1_G._Charpak_Prod_1
- + 7 Route_Prod_1_G._Charpak_Prod_2 + 7 Route_Prod_1_G._Charpak_Prod_3
- + 7 Route_Prod_1_G._Charpak_Prod_4 + 2 Route_Prod_1_Prod_0_Prod_0
- + 2 Route_Prod_1_Prod_0_Prod_1 + 2 Route_Prod_1_Prod_0_Prod_2
- + 2 Route_Prod_1_Prod_0_Prod_3 + 2 Route_Prod_1_Prod_0_Prod_4
- + 112 Route_Prod_1_Prod_2_Prod_0 + 112 Route_Prod_1_Prod_2_Prod_1
- + 112 Route_Prod_1_Prod_2_Prod_2 + 112 Route_Prod_1_Prod_2_Prod_3
- + 112 Route_Prod_1_Prod_2_Prod_4 + 12 Route_Prod_1_Prod_3_Prod_0
- + 12 Route_Prod_1_Prod_3_Prod_1 + 12 Route_Prod_1_Prod_3_Prod_2
- + 12 Route_Prod_1_Prod_3_Prod_3 + 12 Route_Prod_1_Prod_3_Prod_4
- + 12 Route_Prod_1_Prod_4_Prod_0 + 12 Route_Prod_1_Prod_4_Prod_1
- + 12 Route_Prod_1_Prod_4_Prod_2 + 12 Route_Prod_1_Prod_4_Prod_3
- + 12 Route_Prod_1_Prod_4_Prod_4 + 5 Route_Prod_2_G._Charpak_Prod_0
- + 5 Route_Prod_2_G._Charpak_Prod_1 + 5 Route_Prod_2_G._Charpak_Prod_2
- + 5 Route_Prod_2_G._Charpak_Prod_3 + 5 Route_Prod_2_G._Charpak_Prod_4
- + 111 Route_Prod_2_Prod_0_Prod_0 + 111 Route_Prod_2_Prod_0_Prod_1
- + 111 Route_Prod_2_Prod_0_Prod_2 + 111 Route_Prod_2_Prod_0_Prod_3
- + 111 Route_Prod_2_Prod_0_Prod_4 + 112 Route_Prod_2_Prod_1_Prod_0
- + 112 Route_Prod_2_Prod_1_Prod_1 + 112 Route_Prod_2_Prod_1_Prod_2
- + 112 Route_Prod_2_Prod_1_Prod_3 + 112 Route_Prod_2_Prod_1_Prod_4
- + 111 Route_Prod_2_Prod_3_Prod_0 + 111 Route_Prod_2_Prod_3_Prod_1
- + 111 Route_Prod_2_Prod_3_Prod_2 + 111 Route_Prod_2_Prod_3_Prod_3
- + 111 Route_Prod_2_Prod_3_Prod_4 + 265 Route_Prod_2_Prod_4_Prod_0
- + 265 Route_Prod_2_Prod_4_Prod_1 + 265 Route_Prod_2_Prod_4_Prod_2
- + 265 Route_Prod_2_Prod_4_Prod_3 + 265 Route_Prod_2_Prod_4_Prod_4
- + 5 Route_Prod_3_G._Charpak_Prod_0 + 5 Route_Prod_3_G._Charpak_Prod_1
- + 5 Route_Prod_3_G._Charpak_Prod_2 + 5 Route_Prod_3_G._Charpak_Prod_3
- + 5 Route_Prod_3_G._Charpak_Prod_4 + 10 Route_Prod_3_Prod_0_Prod_0
- + 10 Route_Prod_3_Prod_0_Prod_1 + 10 Route_Prod_3_Prod_0_Prod_2
- + 10 Route_Prod_3_Prod_0_Prod_3 + 10 Route_Prod_3_Prod_0_Prod_4
- + Route_Prod_3_Prod_1_Prod_0 + Route_Prod_3_Prod_1_Prod_1
- + Route_Prod_3_Prod_1_Prod_2 + Route_Prod_3_Prod_1_Prod_3
- + Route_Prod_3_Prod_1_Prod_4 + 111 Route_Prod_3_Prod_2_Prod_0
- + 111 Route_Prod_3_Prod_2_Prod_1 + 111 Route_Prod_3_Prod_2_Prod_2
- + 111 Route_Prod_3_Prod_2_Prod_3 + 111 Route_Prod_3_Prod_2_Prod_4
- + Route_Prod_3_Prod_4_Prod_0 + Route_Prod_3_Prod_4_Prod_1
- + Route_Prod_3_Prod_4_Prod_2 + Route_Prod_3_Prod_4_Prod_3
- + Route_Prod_3_Prod_4_Prod_4 + 5 Route_Prod_4_G._Charpak_Prod_0
- + 5 Route_Prod_4_G._Charpak_Prod_1 + 5 Route_Prod_4_G._Charpak_Prod_2
- + 5 Route_Prod_4_G._Charpak_Prod_3 + 5 Route_Prod_4_G._Charpak_Prod_4
- + 171 Route_Prod_4_Prod_0_Prod_0 + 171 Route_Prod_4_Prod_0_Prod_1
- + 171 Route_Prod_4_Prod_0_Prod_2 + 171 Route_Prod_4_Prod_0_Prod_3
- + 171 Route_Prod_4_Prod_0_Prod_4 + 12 Route_Prod_4_Prod_1_Prod_0
- + 12 Route_Prod_4_Prod_1_Prod_1 + 12 Route_Prod_4_Prod_1_Prod_2
- + 12 Route_Prod_4_Prod_1_Prod_3 + 12 Route_Prod_4_Prod_1_Prod_4
- + 112 Route_Prod_4_Prod_2_Prod_0 + 112 Route_Prod_4_Prod_2_Prod_1
- + 112 Route_Prod_4_Prod_2_Prod_2 + 112 Route_Prod_4_Prod_2_Prod_3
- + 112 Route_Prod_4_Prod_2_Prod_4 + Route_Prod_4_Prod_3_Prod_0
- + Route_Prod_4_Prod_3_Prod_1 + Route_Prod_4_Prod_3_Prod_2
- + Route_Prod_4_Prod_3_Prod_3 + Route_Prod_4_Prod_3_Prod_4
+Sum_of_Transporting_Costs: 36 Route_G._Charpak_Prod_0_Prod_0
+ + 36 Route_G._Charpak_Prod_0_Prod_1 + 36 Route_G._Charpak_Prod_0_Prod_2
+ + 36 Route_G._Charpak_Prod_0_Prod_3 + 36 Route_G._Charpak_Prod_0_Prod_4
+ + 8 Route_G._Charpak_Prod_1_Prod_0 + 8 Route_G._Charpak_Prod_1_Prod_1
+ + 8 Route_G._Charpak_Prod_1_Prod_2 + 8 Route_G._Charpak_Prod_1_Prod_3
+ + 8 Route_G._Charpak_Prod_1_Prod_4 + 80 Route_G._Charpak_Prod_2_Prod_0
+ + 80 Route_G._Charpak_Prod_2_Prod_1 + 80 Route_G._Charpak_Prod_2_Prod_2
+ + 80 Route_G._Charpak_Prod_2_Prod_3 + 80 Route_G._Charpak_Prod_2_Prod_4
+ + 73 Route_G._Charpak_Prod_3_Prod_0 + 73 Route_G._Charpak_Prod_3_Prod_1
+ + 73 Route_G._Charpak_Prod_3_Prod_2 + 73 Route_G._Charpak_Prod_3_Prod_3
+ + 73 Route_G._Charpak_Prod_3_Prod_4 + 49 Route_G._Charpak_Prod_4_Prod_0
+ + 49 Route_G._Charpak_Prod_4_Prod_1 + 49 Route_G._Charpak_Prod_4_Prod_2
+ + 49 Route_G._Charpak_Prod_4_Prod_3 + 49 Route_G._Charpak_Prod_4_Prod_4
+ + 38 Route_Prod_0_G._Charpak_Prod_0 + 38 Route_Prod_0_G._Charpak_Prod_1
+ + 38 Route_Prod_0_G._Charpak_Prod_2 + 38 Route_Prod_0_G._Charpak_Prod_3
+ + 38 Route_Prod_0_G._Charpak_Prod_4 + 19 Route_Prod_0_Prod_1_Prod_0
+ + 19 Route_Prod_0_Prod_1_Prod_1 + 19 Route_Prod_0_Prod_1_Prod_2
+ + 19 Route_Prod_0_Prod_1_Prod_3 + 19 Route_Prod_0_Prod_1_Prod_4
+ + 9 Route_Prod_0_Prod_2_Prod_0 + 9 Route_Prod_0_Prod_2_Prod_1
+ + 9 Route_Prod_0_Prod_2_Prod_2 + 9 Route_Prod_0_Prod_2_Prod_3
+ + 9 Route_Prod_0_Prod_2_Prod_4 + 52 Route_Prod_0_Prod_3_Prod_0
+ + 52 Route_Prod_0_Prod_3_Prod_1 + 52 Route_Prod_0_Prod_3_Prod_2
+ + 52 Route_Prod_0_Prod_3_Prod_3 + 52 Route_Prod_0_Prod_3_Prod_4
+ + 83 Route_Prod_0_Prod_4_Prod_0 + 83 Route_Prod_0_Prod_4_Prod_1
+ + 83 Route_Prod_0_Prod_4_Prod_2 + 83 Route_Prod_0_Prod_4_Prod_3
+ + 83 Route_Prod_0_Prod_4_Prod_4 + 8 Route_Prod_1_G._Charpak_Prod_0
+ + 8 Route_Prod_1_G._Charpak_Prod_1 + 8 Route_Prod_1_G._Charpak_Prod_2
+ + 8 Route_Prod_1_G._Charpak_Prod_3 + 8 Route_Prod_1_G._Charpak_Prod_4
+ + 21 Route_Prod_1_Prod_0_Prod_0 + 21 Route_Prod_1_Prod_0_Prod_1
+ + 21 Route_Prod_1_Prod_0_Prod_2 + 21 Route_Prod_1_Prod_0_Prod_3
+ + 21 Route_Prod_1_Prod_0_Prod_4 + 45 Route_Prod_1_Prod_2_Prod_0
+ + 45 Route_Prod_1_Prod_2_Prod_1 + 45 Route_Prod_1_Prod_2_Prod_2
+ + 45 Route_Prod_1_Prod_2_Prod_3 + 45 Route_Prod_1_Prod_2_Prod_4
+ + 58 Route_Prod_1_Prod_3_Prod_0 + 58 Route_Prod_1_Prod_3_Prod_1
+ + 58 Route_Prod_1_Prod_3_Prod_2 + 58 Route_Prod_1_Prod_3_Prod_3
+ + 58 Route_Prod_1_Prod_3_Prod_4 + 95 Route_Prod_1_Prod_4_Prod_0
+ + 95 Route_Prod_1_Prod_4_Prod_1 + 95 Route_Prod_1_Prod_4_Prod_2
+ + 95 Route_Prod_1_Prod_4_Prod_3 + 95 Route_Prod_1_Prod_4_Prod_4
+ + 76 Route_Prod_2_G._Charpak_Prod_0 + 76 Route_Prod_2_G._Charpak_Prod_1
+ + 76 Route_Prod_2_G._Charpak_Prod_2 + 76 Route_Prod_2_G._Charpak_Prod_3
+ + 76 Route_Prod_2_G._Charpak_Prod_4 + 9 Route_Prod_2_Prod_0_Prod_0
+ + 9 Route_Prod_2_Prod_0_Prod_1 + 9 Route_Prod_2_Prod_0_Prod_2
+ + 9 Route_Prod_2_Prod_0_Prod_3 + 9 Route_Prod_2_Prod_0_Prod_4
+ + 50 Route_Prod_2_Prod_1_Prod_0 + 50 Route_Prod_2_Prod_1_Prod_1
+ + 50 Route_Prod_2_Prod_1_Prod_2 + 50 Route_Prod_2_Prod_1_Prod_3
+ + 50 Route_Prod_2_Prod_1_Prod_4 + 99 Route_Prod_2_Prod_3_Prod_0
+ + 99 Route_Prod_2_Prod_3_Prod_1 + 99 Route_Prod_2_Prod_3_Prod_2
+ + 99 Route_Prod_2_Prod_3_Prod_3 + 99 Route_Prod_2_Prod_3_Prod_4
+ + 17 Route_Prod_2_Prod_4_Prod_0 + 17 Route_Prod_2_Prod_4_Prod_1
+ + 17 Route_Prod_2_Prod_4_Prod_2 + 17 Route_Prod_2_Prod_4_Prod_3
+ + 17 Route_Prod_2_Prod_4_Prod_4 + 77 Route_Prod_3_G._Charpak_Prod_0
+ + 77 Route_Prod_3_G._Charpak_Prod_1 + 77 Route_Prod_3_G._Charpak_Prod_2
+ + 77 Route_Prod_3_G._Charpak_Prod_3 + 77 Route_Prod_3_G._Charpak_Prod_4
+ + 55 Route_Prod_3_Prod_0_Prod_0 + 55 Route_Prod_3_Prod_0_Prod_1
+ + 55 Route_Prod_3_Prod_0_Prod_2 + 55 Route_Prod_3_Prod_0_Prod_3
+ + 55 Route_Prod_3_Prod_0_Prod_4 + 63 Route_Prod_3_Prod_1_Prod_0
+ + 63 Route_Prod_3_Prod_1_Prod_1 + 63 Route_Prod_3_Prod_1_Prod_2
+ + 63 Route_Prod_3_Prod_1_Prod_3 + 63 Route_Prod_3_Prod_1_Prod_4
+ + 95 Route_Prod_3_Prod_2_Prod_0 + 95 Route_Prod_3_Prod_2_Prod_1
+ + 95 Route_Prod_3_Prod_2_Prod_2 + 95 Route_Prod_3_Prod_2_Prod_3
+ + 95 Route_Prod_3_Prod_2_Prod_4 + 28 Route_Prod_3_Prod_4_Prod_0
+ + 28 Route_Prod_3_Prod_4_Prod_1 + 28 Route_Prod_3_Prod_4_Prod_2
+ + 28 Route_Prod_3_Prod_4_Prod_3 + 28 Route_Prod_3_Prod_4_Prod_4
+ + 49 Route_Prod_4_G._Charpak_Prod_0 + 49 Route_Prod_4_G._Charpak_Prod_1
+ + 49 Route_Prod_4_G._Charpak_Prod_2 + 49 Route_Prod_4_G._Charpak_Prod_3
+ + 49 Route_Prod_4_G._Charpak_Prod_4 + 95 Route_Prod_4_Prod_0_Prod_0
+ + 95 Route_Prod_4_Prod_0_Prod_1 + 95 Route_Prod_4_Prod_0_Prod_2
+ + 95 Route_Prod_4_Prod_0_Prod_3 + 95 Route_Prod_4_Prod_0_Prod_4
+ + 47 Route_Prod_4_Prod_1_Prod_0 + 47 Route_Prod_4_Prod_1_Prod_1
+ + 47 Route_Prod_4_Prod_1_Prod_2 + 47 Route_Prod_4_Prod_1_Prod_3
+ + 47 Route_Prod_4_Prod_1_Prod_4 + 16 Route_Prod_4_Prod_2_Prod_0
+ + 16 Route_Prod_4_Prod_2_Prod_1 + 16 Route_Prod_4_Prod_2_Prod_2
+ + 16 Route_Prod_4_Prod_2_Prod_3 + 16 Route_Prod_4_Prod_2_Prod_4
+ + 26 Route_Prod_4_Prod_3_Prod_0 + 26 Route_Prod_4_Prod_3_Prod_1
+ + 26 Route_Prod_4_Prod_3_Prod_2 + 26 Route_Prod_4_Prod_3_Prod_3
+ + 26 Route_Prod_4_Prod_3_Prod_4
 Subject To
-distance_maxProd_0: 5 Route_G._Charpak_Prod_0_Prod_0
- + 7 Route_G._Charpak_Prod_1_Prod_0 + 5 Route_G._Charpak_Prod_2_Prod_0
- + 5 Route_G._Charpak_Prod_3_Prod_0 + 5 Route_G._Charpak_Prod_4_Prod_0
- + 5 Route_Prod_0_G._Charpak_Prod_0 + 2 Route_Prod_0_Prod_1_Prod_0
- + 111 Route_Prod_0_Prod_2_Prod_0 + 11 Route_Prod_0_Prod_4_Prod_0
- + 7 Route_Prod_1_G._Charpak_Prod_0 + 2 Route_Prod_1_Prod_0_Prod_0
- + 112 Route_Prod_1_Prod_2_Prod_0 + 12 Route_Prod_1_Prod_3_Prod_0
- + 12 Route_Prod_1_Prod_4_Prod_0 + 5 Route_Prod_2_G._Charpak_Prod_0
- + 111 Route_Prod_2_Prod_0_Prod_0 + 112 Route_Prod_2_Prod_1_Prod_0
- + 111 Route_Prod_2_Prod_3_Prod_0 + 265 Route_Prod_2_Prod_4_Prod_0
- + 5 Route_Prod_3_G._Charpak_Prod_0 + 10 Route_Prod_3_Prod_0_Prod_0
- + Route_Prod_3_Prod_1_Prod_0 + 111 Route_Prod_3_Prod_2_Prod_0
- + Route_Prod_3_Prod_4_Prod_0 + 5 Route_Prod_4_G._Charpak_Prod_0
- + 171 Route_Prod_4_Prod_0_Prod_0 + 12 Route_Prod_4_Prod_1_Prod_0
- + 112 Route_Prod_4_Prod_2_Prod_0 + Route_Prod_4_Prod_3_Prod_0 <= 25
-distance_maxProd_1: 5 Route_G._Charpak_Prod_0_Prod_1
- + 7 Route_G._Charpak_Prod_1_Prod_1 + 5 Route_G._Charpak_Prod_2_Prod_1
- + 5 Route_G._Charpak_Prod_3_Prod_1 + 5 Route_G._Charpak_Prod_4_Prod_1
- + 5 Route_Prod_0_G._Charpak_Prod_1 + 2 Route_Prod_0_Prod_1_Prod_1
- + 111 Route_Prod_0_Prod_2_Prod_1 + 11 Route_Prod_0_Prod_4_Prod_1
- + 7 Route_Prod_1_G._Charpak_Prod_1 + 2 Route_Prod_1_Prod_0_Prod_1
- + 112 Route_Prod_1_Prod_2_Prod_1 + 12 Route_Prod_1_Prod_3_Prod_1
- + 12 Route_Prod_1_Prod_4_Prod_1 + 5 Route_Prod_2_G._Charpak_Prod_1
- + 111 Route_Prod_2_Prod_0_Prod_1 + 112 Route_Prod_2_Prod_1_Prod_1
- + 111 Route_Prod_2_Prod_3_Prod_1 + 265 Route_Prod_2_Prod_4_Prod_1
- + 5 Route_Prod_3_G._Charpak_Prod_1 + 10 Route_Prod_3_Prod_0_Prod_1
- + Route_Prod_3_Prod_1_Prod_1 + 111 Route_Prod_3_Prod_2_Prod_1
- + Route_Prod_3_Prod_4_Prod_1 + 5 Route_Prod_4_G._Charpak_Prod_1
- + 171 Route_Prod_4_Prod_0_Prod_1 + 12 Route_Prod_4_Prod_1_Prod_1
- + 112 Route_Prod_4_Prod_2_Prod_1 + Route_Prod_4_Prod_3_Prod_1 <= 25
-distance_maxProd_2: 5 Route_G._Charpak_Prod_0_Prod_2
- + 7 Route_G._Charpak_Prod_1_Prod_2 + 5 Route_G._Charpak_Prod_2_Prod_2
- + 5 Route_G._Charpak_Prod_3_Prod_2 + 5 Route_G._Charpak_Prod_4_Prod_2
- + 5 Route_Prod_0_G._Charpak_Prod_2 + 2 Route_Prod_0_Prod_1_Prod_2
- + 111 Route_Prod_0_Prod_2_Prod_2 + 11 Route_Prod_0_Prod_4_Prod_2
- + 7 Route_Prod_1_G._Charpak_Prod_2 + 2 Route_Prod_1_Prod_0_Prod_2
- + 112 Route_Prod_1_Prod_2_Prod_2 + 12 Route_Prod_1_Prod_3_Prod_2
- + 12 Route_Prod_1_Prod_4_Prod_2 + 5 Route_Prod_2_G._Charpak_Prod_2
- + 111 Route_Prod_2_Prod_0_Prod_2 + 112 Route_Prod_2_Prod_1_Prod_2
- + 111 Route_Prod_2_Prod_3_Prod_2 + 265 Route_Prod_2_Prod_4_Prod_2
- + 5 Route_Prod_3_G._Charpak_Prod_2 + 10 Route_Prod_3_Prod_0_Prod_2
- + Route_Prod_3_Prod_1_Prod_2 + 111 Route_Prod_3_Prod_2_Prod_2
- + Route_Prod_3_Prod_4_Prod_2 + 5 Route_Prod_4_G._Charpak_Prod_2
- + 171 Route_Prod_4_Prod_0_Prod_2 + 12 Route_Prod_4_Prod_1_Prod_2
- + 112 Route_Prod_4_Prod_2_Prod_2 + Route_Prod_4_Prod_3_Prod_2 <= 25
-distance_maxProd_3: 5 Route_G._Charpak_Prod_0_Prod_3
- + 7 Route_G._Charpak_Prod_1_Prod_3 + 5 Route_G._Charpak_Prod_2_Prod_3
- + 5 Route_G._Charpak_Prod_3_Prod_3 + 5 Route_G._Charpak_Prod_4_Prod_3
- + 5 Route_Prod_0_G._Charpak_Prod_3 + 2 Route_Prod_0_Prod_1_Prod_3
- + 111 Route_Prod_0_Prod_2_Prod_3 + 11 Route_Prod_0_Prod_4_Prod_3
- + 7 Route_Prod_1_G._Charpak_Prod_3 + 2 Route_Prod_1_Prod_0_Prod_3
- + 112 Route_Prod_1_Prod_2_Prod_3 + 12 Route_Prod_1_Prod_3_Prod_3
- + 12 Route_Prod_1_Prod_4_Prod_3 + 5 Route_Prod_2_G._Charpak_Prod_3
- + 111 Route_Prod_2_Prod_0_Prod_3 + 112 Route_Prod_2_Prod_1_Prod_3
- + 111 Route_Prod_2_Prod_3_Prod_3 + 265 Route_Prod_2_Prod_4_Prod_3
- + 5 Route_Prod_3_G._Charpak_Prod_3 + 10 Route_Prod_3_Prod_0_Prod_3
- + Route_Prod_3_Prod_1_Prod_3 + 111 Route_Prod_3_Prod_2_Prod_3
- + Route_Prod_3_Prod_4_Prod_3 + 5 Route_Prod_4_G._Charpak_Prod_3
- + 171 Route_Prod_4_Prod_0_Prod_3 + 12 Route_Prod_4_Prod_1_Prod_3
- + 112 Route_Prod_4_Prod_2_Prod_3 + Route_Prod_4_Prod_3_Prod_3 <= 25
-distance_maxProd_4: 5 Route_G._Charpak_Prod_0_Prod_4
- + 7 Route_G._Charpak_Prod_1_Prod_4 + 5 Route_G._Charpak_Prod_2_Prod_4
- + 5 Route_G._Charpak_Prod_3_Prod_4 + 5 Route_G._Charpak_Prod_4_Prod_4
- + 5 Route_Prod_0_G._Charpak_Prod_4 + 2 Route_Prod_0_Prod_1_Prod_4
- + 111 Route_Prod_0_Prod_2_Prod_4 + 11 Route_Prod_0_Prod_4_Prod_4
- + 7 Route_Prod_1_G._Charpak_Prod_4 + 2 Route_Prod_1_Prod_0_Prod_4
- + 112 Route_Prod_1_Prod_2_Prod_4 + 12 Route_Prod_1_Prod_3_Prod_4
- + 12 Route_Prod_1_Prod_4_Prod_4 + 5 Route_Prod_2_G._Charpak_Prod_4
- + 111 Route_Prod_2_Prod_0_Prod_4 + 112 Route_Prod_2_Prod_1_Prod_4
- + 111 Route_Prod_2_Prod_3_Prod_4 + 265 Route_Prod_2_Prod_4_Prod_4
- + 5 Route_Prod_3_G._Charpak_Prod_4 + 10 Route_Prod_3_Prod_0_Prod_4
- + Route_Prod_3_Prod_1_Prod_4 + 111 Route_Prod_3_Prod_2_Prod_4
- + Route_Prod_3_Prod_4_Prod_4 + 5 Route_Prod_4_G._Charpak_Prod_4
- + 171 Route_Prod_4_Prod_0_Prod_4 + 12 Route_Prod_4_Prod_1_Prod_4
- + 112 Route_Prod_4_Prod_2_Prod_4 + Route_Prod_4_Prod_3_Prod_4 <= 25
+distance_maxProd_0: 36 Route_G._Charpak_Prod_0_Prod_0
+ + 8 Route_G._Charpak_Prod_1_Prod_0 + 80 Route_G._Charpak_Prod_2_Prod_0
+ + 73 Route_G._Charpak_Prod_3_Prod_0 + 49 Route_G._Charpak_Prod_4_Prod_0
+ + 38 Route_Prod_0_G._Charpak_Prod_0 + 19 Route_Prod_0_Prod_1_Prod_0
+ + 9 Route_Prod_0_Prod_2_Prod_0 + 52 Route_Prod_0_Prod_3_Prod_0
+ + 83 Route_Prod_0_Prod_4_Prod_0 + 8 Route_Prod_1_G._Charpak_Prod_0
+ + 21 Route_Prod_1_Prod_0_Prod_0 + 45 Route_Prod_1_Prod_2_Prod_0
+ + 58 Route_Prod_1_Prod_3_Prod_0 + 95 Route_Prod_1_Prod_4_Prod_0
+ + 76 Route_Prod_2_G._Charpak_Prod_0 + 9 Route_Prod_2_Prod_0_Prod_0
+ + 50 Route_Prod_2_Prod_1_Prod_0 + 99 Route_Prod_2_Prod_3_Prod_0
+ + 17 Route_Prod_2_Prod_4_Prod_0 + 77 Route_Prod_3_G._Charpak_Prod_0
+ + 55 Route_Prod_3_Prod_0_Prod_0 + 63 Route_Prod_3_Prod_1_Prod_0
+ + 95 Route_Prod_3_Prod_2_Prod_0 + 28 Route_Prod_3_Prod_4_Prod_0
+ + 49 Route_Prod_4_G._Charpak_Prod_0 + 95 Route_Prod_4_Prod_0_Prod_0
+ + 47 Route_Prod_4_Prod_1_Prod_0 + 16 Route_Prod_4_Prod_2_Prod_0
+ + 26 Route_Prod_4_Prod_3_Prod_0 <= 2000
+distance_maxProd_1: 36 Route_G._Charpak_Prod_0_Prod_1
+ + 8 Route_G._Charpak_Prod_1_Prod_1 + 80 Route_G._Charpak_Prod_2_Prod_1
+ + 73 Route_G._Charpak_Prod_3_Prod_1 + 49 Route_G._Charpak_Prod_4_Prod_1
+ + 38 Route_Prod_0_G._Charpak_Prod_1 + 19 Route_Prod_0_Prod_1_Prod_1
+ + 9 Route_Prod_0_Prod_2_Prod_1 + 52 Route_Prod_0_Prod_3_Prod_1
+ + 83 Route_Prod_0_Prod_4_Prod_1 + 8 Route_Prod_1_G._Charpak_Prod_1
+ + 21 Route_Prod_1_Prod_0_Prod_1 + 45 Route_Prod_1_Prod_2_Prod_1
+ + 58 Route_Prod_1_Prod_3_Prod_1 + 95 Route_Prod_1_Prod_4_Prod_1
+ + 76 Route_Prod_2_G._Charpak_Prod_1 + 9 Route_Prod_2_Prod_0_Prod_1
+ + 50 Route_Prod_2_Prod_1_Prod_1 + 99 Route_Prod_2_Prod_3_Prod_1
+ + 17 Route_Prod_2_Prod_4_Prod_1 + 77 Route_Prod_3_G._Charpak_Prod_1
+ + 55 Route_Prod_3_Prod_0_Prod_1 + 63 Route_Prod_3_Prod_1_Prod_1
+ + 95 Route_Prod_3_Prod_2_Prod_1 + 28 Route_Prod_3_Prod_4_Prod_1
+ + 49 Route_Prod_4_G._Charpak_Prod_1 + 95 Route_Prod_4_Prod_0_Prod_1
+ + 47 Route_Prod_4_Prod_1_Prod_1 + 16 Route_Prod_4_Prod_2_Prod_1
+ + 26 Route_Prod_4_Prod_3_Prod_1 <= 2000
+distance_maxProd_2: 36 Route_G._Charpak_Prod_0_Prod_2
+ + 8 Route_G._Charpak_Prod_1_Prod_2 + 80 Route_G._Charpak_Prod_2_Prod_2
+ + 73 Route_G._Charpak_Prod_3_Prod_2 + 49 Route_G._Charpak_Prod_4_Prod_2
+ + 38 Route_Prod_0_G._Charpak_Prod_2 + 19 Route_Prod_0_Prod_1_Prod_2
+ + 9 Route_Prod_0_Prod_2_Prod_2 + 52 Route_Prod_0_Prod_3_Prod_2
+ + 83 Route_Prod_0_Prod_4_Prod_2 + 8 Route_Prod_1_G._Charpak_Prod_2
+ + 21 Route_Prod_1_Prod_0_Prod_2 + 45 Route_Prod_1_Prod_2_Prod_2
+ + 58 Route_Prod_1_Prod_3_Prod_2 + 95 Route_Prod_1_Prod_4_Prod_2
+ + 76 Route_Prod_2_G._Charpak_Prod_2 + 9 Route_Prod_2_Prod_0_Prod_2
+ + 50 Route_Prod_2_Prod_1_Prod_2 + 99 Route_Prod_2_Prod_3_Prod_2
+ + 17 Route_Prod_2_Prod_4_Prod_2 + 77 Route_Prod_3_G._Charpak_Prod_2
+ + 55 Route_Prod_3_Prod_0_Prod_2 + 63 Route_Prod_3_Prod_1_Prod_2
+ + 95 Route_Prod_3_Prod_2_Prod_2 + 28 Route_Prod_3_Prod_4_Prod_2
+ + 49 Route_Prod_4_G._Charpak_Prod_2 + 95 Route_Prod_4_Prod_0_Prod_2
+ + 47 Route_Prod_4_Prod_1_Prod_2 + 16 Route_Prod_4_Prod_2_Prod_2
+ + 26 Route_Prod_4_Prod_3_Prod_2 <= 2000
+distance_maxProd_3: 36 Route_G._Charpak_Prod_0_Prod_3
+ + 8 Route_G._Charpak_Prod_1_Prod_3 + 80 Route_G._Charpak_Prod_2_Prod_3
+ + 73 Route_G._Charpak_Prod_3_Prod_3 + 49 Route_G._Charpak_Prod_4_Prod_3
+ + 38 Route_Prod_0_G._Charpak_Prod_3 + 19 Route_Prod_0_Prod_1_Prod_3
+ + 9 Route_Prod_0_Prod_2_Prod_3 + 52 Route_Prod_0_Prod_3_Prod_3
+ + 83 Route_Prod_0_Prod_4_Prod_3 + 8 Route_Prod_1_G._Charpak_Prod_3
+ + 21 Route_Prod_1_Prod_0_Prod_3 + 45 Route_Prod_1_Prod_2_Prod_3
+ + 58 Route_Prod_1_Prod_3_Prod_3 + 95 Route_Prod_1_Prod_4_Prod_3
+ + 76 Route_Prod_2_G._Charpak_Prod_3 + 9 Route_Prod_2_Prod_0_Prod_3
+ + 50 Route_Prod_2_Prod_1_Prod_3 + 99 Route_Prod_2_Prod_3_Prod_3
+ + 17 Route_Prod_2_Prod_4_Prod_3 + 77 Route_Prod_3_G._Charpak_Prod_3
+ + 55 Route_Prod_3_Prod_0_Prod_3 + 63 Route_Prod_3_Prod_1_Prod_3
+ + 95 Route_Prod_3_Prod_2_Prod_3 + 28 Route_Prod_3_Prod_4_Prod_3
+ + 49 Route_Prod_4_G._Charpak_Prod_3 + 95 Route_Prod_4_Prod_0_Prod_3
+ + 47 Route_Prod_4_Prod_1_Prod_3 + 16 Route_Prod_4_Prod_2_Prod_3
+ + 26 Route_Prod_4_Prod_3_Prod_3 <= 2000
+distance_maxProd_4: 36 Route_G._Charpak_Prod_0_Prod_4
+ + 8 Route_G._Charpak_Prod_1_Prod_4 + 80 Route_G._Charpak_Prod_2_Prod_4
+ + 73 Route_G._Charpak_Prod_3_Prod_4 + 49 Route_G._Charpak_Prod_4_Prod_4
+ + 38 Route_Prod_0_G._Charpak_Prod_4 + 19 Route_Prod_0_Prod_1_Prod_4
+ + 9 Route_Prod_0_Prod_2_Prod_4 + 52 Route_Prod_0_Prod_3_Prod_4
+ + 83 Route_Prod_0_Prod_4_Prod_4 + 8 Route_Prod_1_G._Charpak_Prod_4
+ + 21 Route_Prod_1_Prod_0_Prod_4 + 45 Route_Prod_1_Prod_2_Prod_4
+ + 58 Route_Prod_1_Prod_3_Prod_4 + 95 Route_Prod_1_Prod_4_Prod_4
+ + 76 Route_Prod_2_G._Charpak_Prod_4 + 9 Route_Prod_2_Prod_0_Prod_4
+ + 50 Route_Prod_2_Prod_1_Prod_4 + 99 Route_Prod_2_Prod_3_Prod_4
+ + 17 Route_Prod_2_Prod_4_Prod_4 + 77 Route_Prod_3_G._Charpak_Prod_4
+ + 55 Route_Prod_3_Prod_0_Prod_4 + 63 Route_Prod_3_Prod_1_Prod_4
+ + 95 Route_Prod_3_Prod_2_Prod_4 + 28 Route_Prod_3_Prod_4_Prod_4
+ + 49 Route_Prod_4_G._Charpak_Prod_4 + 95 Route_Prod_4_Prod_0_Prod_4
+ + 47 Route_Prod_4_Prod_1_Prod_4 + 16 Route_Prod_4_Prod_2_Prod_4
+ + 26 Route_Prod_4_Prod_3_Prod_4 <= 2000
 first_placeProd_0: - 10 Route_G._Charpak_Prod_0_Prod_0 + Visit_Prod_0_Prod_0
  + Visit_Prod_1_Prod_0 + Visit_Prod_2_Prod_0 + Visit_Prod_3_Prod_0
  + Visit_Prod_4_Prod_0 <= 0
@@ -807,21 +815,21 @@ no_underloop_Prod_3_Prod_4_Prod_3: Route_Prod_3_Prod_3_Prod_3
 no_underloop_Prod_3_Prod_4_Prod_4: Route_Prod_3_Prod_3_Prod_4
  + Route_Prod_3_Prod_4_Prod_4 + Route_Prod_4_Prod_3_Prod_4
  + Route_Prod_4_Prod_4_Prod_4 <= 1
-respect_capacityProd_0: 62 Visit_Prod_0_Prod_0 + 58 Visit_Prod_1_Prod_0
- + 59 Visit_Prod_2_Prod_0 + 59 Visit_Prod_3_Prod_0 + 76 Visit_Prod_4_Prod_0
- <= 5000
-respect_capacityProd_1: 62 Visit_Prod_0_Prod_1 + 58 Visit_Prod_1_Prod_1
- + 59 Visit_Prod_2_Prod_1 + 59 Visit_Prod_3_Prod_1 + 76 Visit_Prod_4_Prod_1
+respect_capacityProd_0: 50 Visit_Prod_0_Prod_0 + 49 Visit_Prod_1_Prod_0
+ + 49 Visit_Prod_2_Prod_0 + 58 Visit_Prod_3_Prod_0 + 54 Visit_Prod_4_Prod_0
+ <= 500
+respect_capacityProd_1: 50 Visit_Prod_0_Prod_1 + 49 Visit_Prod_1_Prod_1
+ + 49 Visit_Prod_2_Prod_1 + 58 Visit_Prod_3_Prod_1 + 54 Visit_Prod_4_Prod_1
  <= 0
-respect_capacityProd_2: 62 Visit_Prod_0_Prod_2 + 58 Visit_Prod_1_Prod_2
- + 59 Visit_Prod_2_Prod_2 + 59 Visit_Prod_3_Prod_2 + 76 Visit_Prod_4_Prod_2
- <= 3000
-respect_capacityProd_3: 62 Visit_Prod_0_Prod_3 + 58 Visit_Prod_1_Prod_3
- + 59 Visit_Prod_2_Prod_3 + 59 Visit_Prod_3_Prod_3 + 76 Visit_Prod_4_Prod_3
- <= 0
-respect_capacityProd_4: 62 Visit_Prod_0_Prod_4 + 58 Visit_Prod_1_Prod_4
- + 59 Visit_Prod_2_Prod_4 + 59 Visit_Prod_3_Prod_4 + 76 Visit_Prod_4_Prod_4
- <= 0
+respect_capacityProd_2: 50 Visit_Prod_0_Prod_2 + 49 Visit_Prod_1_Prod_2
+ + 49 Visit_Prod_2_Prod_2 + 58 Visit_Prod_3_Prod_2 + 54 Visit_Prod_4_Prod_2
+ <= 500
+respect_capacityProd_3: 50 Visit_Prod_0_Prod_3 + 49 Visit_Prod_1_Prod_3
+ + 49 Visit_Prod_2_Prod_3 + 58 Visit_Prod_3_Prod_3 + 54 Visit_Prod_4_Prod_3
+ <= 100
+respect_capacityProd_4: 50 Visit_Prod_0_Prod_4 + 49 Visit_Prod_1_Prod_4
+ + 49 Visit_Prod_2_Prod_4 + 58 Visit_Prod_3_Prod_4 + 54 Visit_Prod_4_Prod_4
+ <= 1000
 vehicle_existsProd_0: Route_G._Charpak_G._Charpak_Prod_0
  + Route_G._Charpak_Prod_0_Prod_0 + Route_G._Charpak_Prod_1_Prod_0
  + Route_G._Charpak_Prod_2_Prod_0 + Route_G._Charpak_Prod_3_Prod_0
@@ -897,7 +905,7 @@ vehicle_existsProd_3: Route_G._Charpak_G._Charpak_Prod_3
  + Route_Prod_3_Prod_4_Prod_3 + Route_Prod_4_G._Charpak_Prod_3
  + Route_Prod_4_Prod_0_Prod_3 + Route_Prod_4_Prod_1_Prod_3
  + Route_Prod_4_Prod_2_Prod_3 + Route_Prod_4_Prod_3_Prod_3
- + Route_Prod_4_Prod_4_Prod_3 <= 0
+ + Route_Prod_4_Prod_4_Prod_3 <= 10
 vehicle_existsProd_4: Route_G._Charpak_G._Charpak_Prod_4
  + Route_G._Charpak_Prod_0_Prod_4 + Route_G._Charpak_Prod_1_Prod_4
  + Route_G._Charpak_Prod_2_Prod_4 + Route_G._Charpak_Prod_3_Prod_4
@@ -916,7 +924,7 @@ vehicle_existsProd_4: Route_G._Charpak_G._Charpak_Prod_4
  + Route_Prod_3_Prod_4_Prod_4 + Route_Prod_4_G._Charpak_Prod_4
  + Route_Prod_4_Prod_0_Prod_4 + Route_Prod_4_Prod_1_Prod_4
  + Route_Prod_4_Prod_2_Prod_4 + Route_Prod_4_Prod_3_Prod_4
- + Route_Prod_4_Prod_4_Prod_4 <= 0
+ + Route_Prod_4_Prod_4_Prod_4 <= 10
 visit_of_producers1_G._Charpak_Prod_0: Route_G._Charpak_G._Charpak_Prod_0
  + Route_G._Charpak_Prod_0_Prod_0 + Route_G._Charpak_Prod_1_Prod_0
  + Route_G._Charpak_Prod_2_Prod_0 + Route_G._Charpak_Prod_3_Prod_0

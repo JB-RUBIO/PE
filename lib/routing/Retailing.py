@@ -67,30 +67,35 @@ def createTimeInterval(dicToProcess, dateMin, dateMax):
 
 def getCosts(dicToProcess, date=['04/01/22'], campus=['G. Charpak']):
     res = {}
-    if len(campus) == 1 and len(date) == 1:
-        for camp in campus:
-            for day in date:
-                for prod in dicToProcess[camp][day]:
-                    res[prod] = dicToProcess[camp][day][prod]
-        return res
-    elif len(campus) == 1 and len(date) != 1:
-        for camp in campus:
-            for day in date:
-                bufferDate = {}
-                for prod in dicToProcess[camp][day]:
-                    bufferDate[prod] = dicToProcess[camp][day][prod]
-                res[day] = bufferDate
-        return res
-    else:
-        for camp in campus:
-            bufferCampus = {}
-            for day in date:
-                bufferDate = {}
-                for prod in dicToProcess[camp][day]:
-                    bufferDate[prod] = dicToProcess[camp][day][prod]
-                bufferCampus[day] = bufferDate
-            res[camp] = bufferCampus
-        return res
+    # if len(campus) == 1 and len(date) == 1:
+    #     for camp in campus:
+    #         bufferCampus = {}
+    #         for day in date:
+    #             bufferDate = {}
+    #             for prod in dicToProcess[camp][day]:
+    #                 bufferDate[prod] = dicToProcess[camp][day][prod]
+    #             bufferCampus[day] = bufferDate
+    #         res[camp] = bufferCampus
+    #     return res
+    # elif len(campus) == 1 and len(date) != 1:
+    #     for camp in campus:
+    #         bufferCampus = {}
+    #         for day in date:
+    #             bufferDate = {}
+    #             for prod in dicToProcess[camp][day]:
+    #                 bufferDate[prod] = dicToProcess[camp][day][prod]
+    #             res[day] = bufferDate
+    #     return res
+    # else:
+    for camp in campus:
+        bufferCampus = {}
+        for day in date:
+            bufferDate = {}
+            for prod in dicToProcess[camp][day]:
+                bufferDate[prod] = dicToProcess[camp][day][prod]
+            bufferCampus[day] = bufferDate
+        res[camp] = bufferCampus
+    return res
 
 # fonction to get subsets
 
@@ -160,7 +165,7 @@ def getProducersLists():
     return createDicProducersLists(dicFile)
 
 
-def getDemand(date, campus=['G. Charpak']):
+def getDemand(dateMin, dateMax, campus=['G. Charpak']):
     # File path delaration
     CUR_DIR = Path(__file__).parent
     path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
@@ -171,11 +176,11 @@ def getDemand(date, campus=['G. Charpak']):
     dicProducersLists = createDicProducersLists(dicFile)
     dicToProcess = createDicCostsLists(dicFile, dicProducersLists)
 
-    dateMin = '04/01/22'
-    dateMax = '30/01/22'
+    # dateMin = '04/01/22'
+    # dateMax = '30/01/22'
     timeInterval = createTimeInterval(dicToProcess, dateMin, dateMax)
 
-    res = getCosts(dicToProcess, [dateMin])
+    res = getCosts(dicToProcess, timeInterval, campus)
     return res
 
 
