@@ -2,6 +2,8 @@ import pulp
 import itertools
 import numpy as np
 import copy
+import Retailing as rt
+
 
 max_distance = 25
 
@@ -206,6 +208,21 @@ transportation_costs = [[0, 5, 9, 6, 4, 11],
                         [11, 5, 11, 5, 16, 0]
                     ]
                     
+def driverHeuristic(dateMin, dataMax, Campus):
+    # Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
+    # Telecom sud Paris
+    # Campus = ['G. Charpak', 'Mines ICM']
+    dateMin = '04/01/22'
+    dateMax = '05/01/22'
+
+
+    dicProducers = rt.getProducersLists()
+    Campus = dicProducers.keys()
+    # print(Campus)
+    dicDemand = rt.getDemand(dateMin, dateMax, Campus)
+    dicCostsMatrix = rt.getTransportationCosts(Campus)
+    dicCapacities = rt.getCapacities(Campus)
+    dicVehicle = rt.getVehicles(dicCapacities)
 
 
 x, y = processWithHeuristic(readProd, supply, Capacity, transportation_costs)
