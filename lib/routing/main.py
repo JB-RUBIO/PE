@@ -1,19 +1,28 @@
+# COIN : ensemble de solvers
+# GLPK
+# gurobi
 import pulp
 import Retailing as rt
 
-campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
-# campus = ['G. Charpak']
+# Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
+# Telecom sud Paris
+# Campus = ['G. Charpak', 'Mines ICM']
 dateMin = '04/01/22'
-dateMax = '07/01/22'
+dateMax = '05/01/22'
 
 
 dicProducers = rt.getProducersLists()
-dicDemand = rt.getDemand(dateMin, dateMax, campus)
-dicCostsMatrix = rt.getTransportationCosts(campus)
-dicCapacities = rt.getCapacities(campus)
+Campus = dicProducers.keys()
+# print(Campus)
+dicDemand = rt.getDemand(dateMin, dateMax, Campus)
+dicCostsMatrix = rt.getTransportationCosts(Campus)
+dicCapacities = rt.getCapacities(Campus)
 dicVehicle = rt.getVehicles(dicCapacities)
 
 
+# print(dicProducers)
+
+# print(dicProducers)
 # # if the producers have an available vehicle or not
 # vehicle = {Producers[0]: 1,
 #            Producers[1]: 0,
@@ -42,8 +51,9 @@ dicVehicle = rt.getVehicles(dicCapacities)
 # print('dicDemand', dicDemand)
 
 
-for camp in campus:
-    for day in ['04/01/22', '05/01/22', '06/01/22']:
+for camp in Campus:
+    campus = [camp]
+    for day in ['04/01/22']:
         print('campus : ', camp, 'jour : ', day)
         supply = dicDemand[camp][day]
         # print('supply', supply)
@@ -60,10 +70,16 @@ for camp in campus:
         transportation_costs = dicCostsMatrix[camp]
         # print('Matrix', transportation_costs)
 
+        print(campus)
+        print(Producers)
+        print(transportation_costs)
+        print(Capacity)
+        print(supply)
+
         costs = pulp.makeDict([campus + Producers, campus +
                                Producers], transportation_costs, 0)
 
-        distance_max = 2000
+        distance_max = 200
         Np = len(Producers)
 
         Vehicle = [(i, k) for i in campus + Producers for k in Producers]
@@ -144,7 +160,8 @@ for camp in campus:
         prob.writeLP("CoopainVRPProblem.lp")
 
         # The problem is solved using Cplex
-        prob.solve(pulp.getSolver('CPLEX_CMD', timeLimit=10))
+        # prob.solve(pulp.getSolver('GUROBI_CMD', timeLimit=10))
+        prob.solve(pulp.PULP_CBC_CMD(fracGap=0))
 
         # The status of the solution is printed to the screen
         print("Status:", pulp.LpStatus[prob.status])
