@@ -1,20 +1,26 @@
+# COIN : ensemble de solvers
+# GLPK
+# gurobi
 import pulp
 import Retailing as rt
 
 # Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
 # Telecom sud Paris
-Campus = ['Telecom sud Paris']
+# Campus = ['G. Charpak', 'Mines ICM']
 dateMin = '04/01/22'
 dateMax = '05/01/22'
 
 
 dicProducers = rt.getProducersLists()
+Campus = dicProducers.keys()
+# print(Campus)
 dicDemand = rt.getDemand(dateMin, dateMax, Campus)
 dicCostsMatrix = rt.getTransportationCosts(Campus)
 dicCapacities = rt.getCapacities(Campus)
 dicVehicle = rt.getVehicles(dicCapacities)
 
-print(Campus)
+
+# print(dicProducers)
 
 # print(dicProducers)
 # # if the producers have an available vehicle or not
@@ -73,7 +79,7 @@ for camp in Campus:
         costs = pulp.makeDict([campus + Producers, campus +
                                Producers], transportation_costs, 0)
 
-        distance_max = 1000000
+        distance_max = 200
         Np = len(Producers)
 
         Vehicle = [(i, k) for i in campus + Producers for k in Producers]
@@ -154,7 +160,8 @@ for camp in Campus:
         prob.writeLP("CoopainVRPProblem.lp")
 
         # The problem is solved using Cplex
-        prob.solve(pulp.getSolver('CPLEX_CMD', timeLimit=10))
+        # prob.solve(pulp.getSolver('GUROBI_CMD', timeLimit=10))
+        prob.solve(pulp.PULP_CBC_CMD(fracGap=0))
 
         # The status of the solution is printed to the screen
         print("Status:", pulp.LpStatus[prob.status])
