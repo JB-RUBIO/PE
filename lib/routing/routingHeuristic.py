@@ -1,5 +1,7 @@
 import pulp
 import itertools
+import numpy as np
+import copy
 
 class Arc:
     def __init__(self, n1, n2, c):
@@ -10,7 +12,7 @@ class Arc:
         return str.format("({},{},{}))", self.n1, self.n2, self.c)
     
 class Prod:
-    def __init__(self, name, Id):
+    def __init__(self, name, Id, Group = 0):
         self.name = name
         self.Id = Id
 
@@ -70,6 +72,30 @@ def two_opt(route, cost_mat):
         route = best
     return best
 
+def addNode(road, group):
+    if(len(GroupRoad[group]) == 1): #Add nodes for one truck
+            for j in Producers:
+                if((j.getName != road[0].getName)  and Capacity[road[0].getName] >= (SatisfiedDemand[road[0].getName] + supply[j.getName])):
+                    road.append(j)
+                    SatisfiedDemand[road[0].getName] += supply[j.getName]
+    else:
+        visited = np.zeros(len(Producers), dtype = bool)
+        for i in GroupRoad[group]:
+            visited[i.Id] = 1    #Add producers of the group to visited producers
+        for i in Producers:      #Attribute producers to closer truck in the group
+            if(visited[i.Id] == 0):
+                cost = max_distance
+                cheaper = 0
+                for j in GroupRoad[group]:
+                    if(cost > transportation_costs[j.Id][i.Id]) and (SatisfiedDemand[j.getName] < Capacity[j.getName]):
+                        print("Cout ", j," vers ", i, " = ", transportation_costs[j.Id][i.Id])
+                        cost = transportation_costs[j.Id][i.Id]
+                        cheaper = copy.deepcopy(j)
+                Road[cheaper.getName].append(i)
+                SatisfiedDemand[cheaper.getName] += supply[i.getName] 
+                visited[i.Id] = 1
+
+    
 readProd = ["Prod_0", "Prod_1", "Prod_2", "Prod_3", "Prod_4"]
 Producers = []
 for i in readProd:
@@ -108,29 +134,44 @@ total_demand = 0
 for i in supply:
     total_demand += supply[i]
 
+GroupRoad = {}
+GroupCapacity = []
+#Create road that starts where vehicles are available and group by round
 
-
-#Create road that starts where vehicles are available
-
+grp_size=0
+grp_index = 0
 for i in Capacity:
     if(Capacity[i]!=0):
+        
         if(i not in SatisfiedDemand):
             SatisfiedDemand[i] = supply[i]
         else:
             SatisfiedDemand[i] += supply[i]
         Road[i] = [Prod(i, int(i[5:]))]
+        if(Capacity[i] >= total_demand):
+            grp_size = 0
+            grp_index += 1
+            GroupRoad[i] = [copy.deepcopy(Road[i][0])]
+            GroupCapacity.append(Capacity[i])
+            
+        elif(Capacity[i] < total_demand or GroupCapacity[i] < total_demand):
+            #SatisfiedDemand[i] +=  supply[i]
+            if(grp_index == 1):
+                start_prod = i
+                GroupCapacity.append(Capacity[i])
 
-print(SatisfiedDemand)
+                GroupRoad[i] = [copy.deepcopy(Road[i][0])]
+                grp_index += 1
+            else:
+                GroupCapacity[grp_index - 1] = Capacity[i] + GroupCapacity[grp_size]
+                GroupRoad[start_prod].append(Road[i][0])
 
-#Add nodes to roads
-#TO ADD: Taking into accounts unvisited producers when missing capacities
-#Suggest additionnal tour
-for i in Road:
-    for j in Producers:
-        if((j.getId() != Road[i][0].getId())  and Capacity[i] >= (SatisfiedDemand[i] + supply[j.getName])):
-            Road[i].append(j)
-            SatisfiedDemand[i] += supply[j.getName]
+                print(grp_index - grp_size)
+            grp_size += 1
 
+#Add nodes to roads taking into account groups
+for i in GroupRoad:
+    addNode(Road[i], i)
 
 #Add campus to roads
 for i in Road:
@@ -146,9 +187,6 @@ for i in SatisfiedDemand:
 
 
 #Roads enhacement 
-
-deltaMin = 0
-
 for i in Road:
     print(Road[i])
 
@@ -159,38 +197,10 @@ for i in Road:
     print("Route empruntée :", two_opt(Road[i], transportation_costs))
     print("Le coût est désormais de :", costProcess(Road[i]))
 
-cost_min = max_distance * Np
-demand_max = 0
-bestRoad = []
-tempRoad = []
-
-
-
-for i in Road:
-    print(SatisfiedDemand[i])
-    if demand_max == SatisfiedDemand[i]:    #Si la demande est satisfaite
-        demand_max = SatisfiedDemand[i]
-        tempRoad = Road[i]
-        cost = costProcess(tempRoad)
-        if cost_min > cost:
-            cost_min = cost
-            bestRoad = Road[i]
-
-print(bestRoad)
-print(finalRoad)
-#succ(k) = Road[i][rang+1]
-# for i in range(len(Road)):
-#     s = 0
-#     for j in range(len(Road[0])-1):
-#         print()
-#         #s += transportation_costs[Road[i][j]-1][Road[i][j+1]-1]
-#     RoadCost.append(s)
-
-       # s += transportation_costs[Road[i][j]][Road[i][j+1]]
-
-# vars_Road = pulp.LpVariable.dicts(("Route", ["Campus"] + Producers, ["Campus"] + Producers, Producers), 0, None, pulp.LpInteger)
-# vars_visit = pulp.LpVariable.dicts(("Route", ["Campus"] + Producers, Producers), 0, None, pulp.LpInteger)
-
-# prob = pulp.LpProblem("Coopain VRP Problem",pulp.LpMinimize)
-# prob += pulp.lpSum([vars_Road[i][j][k] * costs[i][j] for (i, j, k) in Road]), "Sum_of_Transporting_Costs"
-
+ind = 0
+for i in GroupRoad:
+    ind += 1
+    cost = 0
+    for j in GroupRoad[i]:
+        cost += costProcess(Road[j.getName])
+    print("Le coût du groupe ", ind, " est de ", cost)
