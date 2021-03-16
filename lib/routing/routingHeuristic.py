@@ -3,14 +3,7 @@ import itertools
 import numpy as np
 import copy
 
-class Arc:
-    def __init__(self, n1, n2, c):
-        self.n1 = n1
-        self.n2 = n2
-        self.c = c
-    def __str__(self):
-        return str.format("({},{},{}))", self.n1, self.n2, self.c)
-    
+
 class Prod:
     def __init__(self, name, Id, Group = 0):
         self.name = name
