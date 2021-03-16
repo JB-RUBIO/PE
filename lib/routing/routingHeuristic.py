@@ -208,24 +208,47 @@ transportation_costs = [[0, 5, 9, 6, 4, 11],
                         [11, 5, 11, 5, 16, 0]
                     ]
                     
-def driverHeuristic(dateMin, dataMax, Campus):
+def driverHeuristic(dateMin = '04/01/22'
+ , dataMax = '05/01/22', Campus = ['G. Charpak']):
     # Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
     # Telecom sud Paris
     # Campus = ['G. Charpak', 'Mines ICM']
-    dateMin = '04/01/22'
-    dateMax = '05/01/22'
-
 
     dicProducers = rt.getProducersLists()
-    Campus = dicProducers.keys()
-    # print(Campus)
+    #Campus = dicProducers.keys()
     dicDemand = rt.getDemand(dateMin, dateMax, Campus)
     dicCostsMatrix = rt.getTransportationCosts(Campus)
     dicCapacities = rt.getCapacities(Campus)
     dicVehicle = rt.getVehicles(dicCapacities)
+    
+    for camp in Campus:
+        campus = [camp]
+        for day in ['04/01/22']:
+            print('campus : ', camp, 'jour : ', day)
+            supply = dicDemand[camp][day]
+            # print('supply', supply)
+
+            Producers = dicProducers[camp]
+            # print('producers', Producers)
+
+            vehicle = dicVehicle[camp]
+            # print('vehicle', vehicle)
+
+            Capacity = dicCapacities[camp]
+            # print('Capacities', Capacity)
+
+            transportation_costs = dicCostsMatrix[camp]
+            # print('Matrix', transportation_costs)
+
+            print(campus)
+            print(Producers)
+            print(transportation_costs)
+            print(Capacity)
+            print(supply)
+
 
 
 x, y = processWithHeuristic(readProd, supply, Capacity, transportation_costs)
-
+driverHeuristic()
 print(x)
 print(y)
