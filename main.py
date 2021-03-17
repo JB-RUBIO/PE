@@ -3,8 +3,6 @@ from tkinter import ttk
 # from lib.formatter import DataGenerator as dg
 from lib.routing import Retailing as rt
 from lib.routing import RoutingSolver as rs
-import time
-import threading
 
 TITLE = "Coop'Pain 95 edition"
 TITLE_LABEL = "Generate the delivery schedule"
