@@ -4,9 +4,8 @@ import numpy as np
 import copy
 import Retailing as rt
 
-
-max_distance = 25
-
+#TODO: transform matrix to place campus as last index
+max_distance = 150
 class Prod:
     def __init__(self, name, Id, Group = 0):
         self.name = name
@@ -37,11 +36,11 @@ def insertion_sort(array, compare_function):
             
         array[currentPosition] = currentValue
 
-def costProcess(road):
+def costProcess(road, campus, transportation_costs):
     cost = 0
     lastNode = road[0]
     for i in road:
-        if(i=='Campus'):
+        if(i==campus):
             cost += transportation_costs[lastNode.getId()][-1]
             lastNode = i
         elif(i in road):
@@ -62,13 +61,13 @@ def two_opt(route, cost_mat):
         for i in range(2, len(route) - 2):
             for j in range(i + 1, len(route)):
                 if j - i == 1: continue
-                if cost_change(transportation_costs, best[i - 1].getId(), best[i].getId(), best[j - 1].getId(), best[j].getId()) < 0:
+                if cost_change(cost_mat, best[i - 1].getId(), best[i].getId(), best[j - 1].getId(), best[j].getId()) < 0:
                     best[i:j] = best[j - 1:i - 1:-1]
                     improved = True
         route = best
     return best
 
-def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity):
+def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity, transportation_costs):
     if(len(GroupRoad[group]) == 1): #Add nodes for one truck
             for j in Producers:
                 if((j.getName != road[0].getName)  and Capacity[road[0].getName] >= (SatisfiedDemand[road[0].getName] + supply[j.getName])):
@@ -92,7 +91,7 @@ def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Ca
                 visited[i.Id] = 1
 
 
-def processWithHeuristic(readProd, supply, Capacity, transportation_costs):
+def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campus):
     Producers = []
     for i in readProd:
         Producers.append(Prod(i, int(i[5:])))
@@ -127,35 +126,37 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs):
                 grp_index += 1
                 GroupRoad[i] = [copy.deepcopy(Road[i][0])]
                 GroupCapacity.append(Capacity[i])
-                
-            elif(Capacity[i] < total_demand or GroupCapacity[i] < total_demand):
+               
+            elif(Capacity[i] < total_demand or GroupCapacity[grp_index] < total_demand):
                 #SatisfiedDemand[i] +=  supply[i]
-                if(grp_index == 1):
+                if(grp_size == 0):
                     start_prod = i
                     GroupCapacity.append(Capacity[i])
 
                     GroupRoad[i] = [copy.deepcopy(Road[i][0])]
-                    grp_index += 1
+                    grp_size += 1
                 else:
-                    GroupCapacity[grp_index - 1] = Capacity[i] + GroupCapacity[grp_size]
+                    GroupCapacity[grp_index] = Capacity[i] + GroupCapacity[grp_index]
                     GroupRoad[start_prod].append(Road[i][0])
-
-                    print(grp_index - grp_size)
-                grp_size += 1
+                    grp_size += 1
+            if(Capacity[i] >= total_demand or GroupCapacity[grp_index] >= total_demand):
+                grp_size = 0
 
     #Add nodes to roads taking into account groups
     for i in GroupRoad:
-        addNode(Road[i], i, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity)
+        addNode(Road[i], i, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity, transportation_costs)
 
     #Add campus to roads
     for i in Road:
         Road[i].append(Prod('Campus', -1))
 
-
+    #Producers returns at home
+    for i in Road:
+        Road[i].append(Road[i][0])
 
     #Costs display
     for i in Road: 
-        print("Coût de la route", i, ": ", costProcess(Road[i]))
+        print("Coût de la route", i, ": ", costProcess(Road[i], campus, transportation_costs))
     for i in SatisfiedDemand:
         print("Demande de la route", i, ": ", SatisfiedDemand[i])
 
@@ -168,14 +169,14 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs):
         print("Le camion part de", i)
         Road[i] = two_opt(Road[i], transportation_costs)
         print("Route empruntée :", two_opt(Road[i], transportation_costs))
-        print("Le coût est désormais de :", costProcess(Road[i]))
+        print("Le coût est désormais de :", costProcess(Road[i], campus, transportation_costs))
 
     ind = 0
     for i in GroupRoad:
         ind += 1
         cost = 0
         for j in GroupRoad[i]:
-            cost += costProcess(Road[j.getName])
+            cost += costProcess(Road[j.getName], campus, transportation_costs)
         print("Le coût du groupe ", ind, " est de ", cost)
 
     return Road, GroupRoad
@@ -183,33 +184,10 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs):
 
 
 
-readProd = ["Prod_0", "Prod_1", "Prod_2", "Prod_3", "Prod_4"]
 
-
-supply = {"Prod_0": 500,
-        "Prod_1": 900,
-        "Prod_2": 1800,
-        "Prod_3": 200,
-        "Prod_4": 700}
-
-
-Capacity = {"Prod_0": 5000,
-        "Prod_1": 0,
-        "Prod_2": 3000,
-        "Prod_3": 0,
-        "Prod_4": 1500}
-
-#La dernière colonne/ligne et transportation_costs correspond au campus
-transportation_costs = [[0, 5, 9, 6, 4, 11],
-                        [5, 0, 15, 7, 8, 6],
-                        [10, 15, 0, 4, 16, 11],
-                        [5, 7, 5, 0, 12, 4],
-                        [4, 8, 15, 12, 0, 17],
-                        [11, 5, 11, 5, 16, 0]
-                    ]
                     
 def driverHeuristic(dateMin = '04/01/22'
- , dataMax = '05/01/22', Campus = ['G. Charpak']):
+ , dateMax = '05/01/22', Campus = ['G. Charpak']):
     # Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
     # Telecom sud Paris
     # Campus = ['G. Charpak', 'Mines ICM']
@@ -224,7 +202,7 @@ def driverHeuristic(dateMin = '04/01/22'
     for camp in Campus:
         campus = [camp]
         for day in ['04/01/22']:
-            print('campus : ', camp, 'jour : ', day)
+            #print('campus : ', camp, 'jour : ', day)
             supply = dicDemand[camp][day]
             # print('supply', supply)
 
@@ -239,16 +217,11 @@ def driverHeuristic(dateMin = '04/01/22'
 
             transportation_costs = dicCostsMatrix[camp]
             # print('Matrix', transportation_costs)
+            x, y = processWithHeuristic(Producers, supply, Capacity, transportation_costs, camp)
 
-            print(campus)
-            print(Producers)
-            print(transportation_costs)
-            print(Capacity)
-            print(supply)
+            print(x)
+            print(y)
 
 
 
-x, y = processWithHeuristic(readProd, supply, Capacity, transportation_costs)
-driverHeuristic()
-print(x)
-print(y)
+driverHeuristic(Campus = ['IMT Atlantique'])

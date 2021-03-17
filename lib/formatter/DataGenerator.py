@@ -195,4 +195,4 @@ if __name__ == "__main__":
     writingPath = r'res\routing\DailyGroupedOrders.xlsx'
     writeFile(writingPath, dicWeights)
 
-    print(dicWeights)
+    print('The main execution routine is finished')
