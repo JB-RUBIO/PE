@@ -37,6 +37,7 @@ def insertion_sort(array, compare_function):
         array[currentPosition] = currentValue
 
 def costProcess(road, campus, transportation_costs):
+    
     cost = 0
     lastNode = road[0]
     for i in road:
@@ -68,6 +69,7 @@ def two_opt(route, cost_mat):
     return best
 
 def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity, transportation_costs):
+    
     if(len(GroupRoad[group]) == 1): #Add nodes for one truck
             for j in Producers:
                 if((j.getName != road[0].getName)  and Capacity[road[0].getName] >= (SatisfiedDemand[road[0].getName] + supply[j.getName])):
@@ -82,9 +84,9 @@ def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Ca
                 cost = max_distance
                 cheaper = 0
                 for j in GroupRoad[group]:
-                    if(cost > transportation_costs[j.Id][i.Id]) and (SatisfiedDemand[j.getName] < Capacity[j.getName]):
-                        print("Cout ", j," vers ", i, " = ", transportation_costs[j.Id][i.Id])
-                        cost = transportation_costs[j.Id][i.Id]
+                    if(cost > transportation_costs[j.Id+1][i.Id+1]) and (SatisfiedDemand[j.getName] < Capacity[j.getName]):
+                        print("Cout ", j," vers ", i, " = ", transportation_costs[j.Id+1][i.Id+1])
+                        cost = transportation_costs[j.Id+1][i.Id+1]
                         cheaper = copy.deepcopy(j)
                 Road[cheaper.getName].append(i)
                 SatisfiedDemand[cheaper.getName] += supply[i.getName] 
@@ -146,13 +148,6 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
     for i in GroupRoad:
         addNode(Road[i], i, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity, transportation_costs)
 
-    #Add campus to roads
-    for i in Road:
-        Road[i].append(Prod('Campus', -1))
-
-    #Producers returns at home
-    for i in Road:
-        Road[i].append(Road[i][0])
 
     #Costs display
     for i in Road: 
@@ -170,6 +165,15 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         Road[i] = two_opt(Road[i], transportation_costs)
         print("Route empruntée :", two_opt(Road[i], transportation_costs))
         print("Le coût est désormais de :", costProcess(Road[i], campus, transportation_costs))
+
+            #Add campus to roads
+    for i in Road:
+        Road[i].append(Prod('Campus', -1))
+
+    #Producers returns at home
+    for i in Road:
+        Road[i].append(Road[i][0])
+
 
     ind = 0
     for i in GroupRoad:
