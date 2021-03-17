@@ -166,16 +166,17 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
     toDel = np.zeros(len(GroupRoad), dtype = int)
     toDel -= 1
     for i in GroupRoad:
-        ind += 1
+        
         cost = [0] * len(GroupRoad)
 
         for j in GroupRoad[i]:
-            cost[ind - 1] = cost[ind - 1] + costProcess(Road[j.getName], campus, transportation_costs)
-            if(cost[ind - 1] > max_distance or cost[ind - 1] == 0):
-                toDel[ind - 1] = ind - 1
+            cost[ind] = cost[ind] + costProcess(Road[j.getName], campus, transportation_costs)
+            if(cost[ind] > max_distance or cost[ind] == 0):
+                toDel[ind] = ind
+        ind += 1
     index = list(GroupRoad)
-    for i in toDel:
-        if(toDel[i] == 1):
+    for i in toDel[::-1]:
+        if(toDel[i] != -1):
             del GroupRoad[index[i]]
             del cost[toDel[i]]
 
