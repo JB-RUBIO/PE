@@ -67,16 +67,16 @@ def createTimeInterval(dicToProcess, dateMin, dateMax):
 
 def getCosts(dicToProcess, date=['04/01/22'], campus=['G. Charpak']):
     res = {}
-    # if len(campus) == 1 and len(date) == 1:
-    #     for camp in campus:
-    #         bufferCampus = {}
-    #         for day in date:
-    #             bufferDate = {}
-    #             for prod in dicToProcess[camp][day]:
-    #                 bufferDate[prod] = dicToProcess[camp][day][prod]
-    #             bufferCampus[day] = bufferDate
-    #         res[camp] = bufferCampus
-    #     return res
+    if len(campus) == 1 and len(date) == 1:
+        for camp in campus:
+            bufferCampus = {}
+            for day in date:
+                bufferDate = {}
+                for prod in dicToProcess[camp][day]:
+                    bufferDate[prod] = dicToProcess[camp][day][prod]
+                bufferCampus[day] = bufferDate
+            res[camp] = bufferCampus
+        return res
     # elif len(campus) == 1 and len(date) != 1:
     #     for camp in campus:
     #         bufferCampus = {}
@@ -87,15 +87,16 @@ def getCosts(dicToProcess, date=['04/01/22'], campus=['G. Charpak']):
     #             res[day] = bufferDate
     #     return res
     # else:
-    for camp in campus:
-        bufferCampus = {}
-        for day in date:
-            bufferDate = {}
-            for prod in dicToProcess[camp][day]:
-                bufferDate[prod] = dicToProcess[camp][day][prod]
-            bufferCampus[day] = bufferDate
-        res[camp] = bufferCampus
-    return res
+    else:
+        for camp in campus:
+            bufferCampus = {}
+            for day in date:
+                bufferDate = {}
+                for prod in dicToProcess[camp][day]:
+                    bufferDate[prod] = dicToProcess[camp][day][prod]
+                bufferCampus[day] = bufferDate
+            res[camp] = bufferCampus
+        return res
 
 # fonction to get subsets
 
@@ -143,9 +144,9 @@ def readCapacities(path, liste):
     return dic
 
 
-def toDicCapacities(dicCapacities):
+def toDicCapacities(dicProducers, dicCapacities):
     res = {}
-    dicProducersLists = getProducersLists()
+    dicProducersLists = dicProducers
     for camp in dicCapacities:
         buffer = {}
         i = 0
@@ -156,32 +157,49 @@ def toDicCapacities(dicCapacities):
     return res
 
 
-def getProducersLists():
+# def getProducersLists():
+#     CUR_DIR = Path(__file__).parent
+#     path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
+
+#     dicFile = readFile(path)
+#     dicFile = preProcessing(dicFile)
+#     return createDicProducersLists(dicFile)
+
+
+def createDicFile():
     CUR_DIR = Path(__file__).parent
     path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
 
     dicFile = readFile(path)
     dicFile = preProcessing(dicFile)
-    return createDicProducersLists(dicFile)
+    return dicFile
 
 
-def getDemand(dateMin, dateMax, campus=['G. Charpak']):
-    # File path delaration
-    CUR_DIR = Path(__file__).parent
-    path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
-
-    dicFile = readFile(path)
-    dicFile = preProcessing(dicFile)
-
+def createDicToProcess(dicFile):
     dicProducersLists = createDicProducersLists(dicFile)
     dicToProcess = createDicCostsLists(dicFile, dicProducersLists)
-    print(dicToProcess)
-    # dateMin = '04/01/22'
-    # dateMax = '30/01/22'
-    timeInterval = createTimeInterval(dicToProcess, dateMin, dateMax)
+    return dicToProcess
 
-    res = getCosts(dicToProcess, timeInterval, campus)
-    return res
+
+def getDemand(dicToProcess, dateMin, dateMax, campus=['G. Charpak']):
+    # File path delaration
+    # CUR_DIR = Path(__file__).parent
+    # path = CUR_DIR.parent.parent / 'res' / 'routing' / 'DailyGroupedOrders.xlsx'
+
+    # dicFile = readFile(path)
+    # dicFile = preProcessing(dicFile)
+
+    # dicProducersLists = createDicProducersLists(dicFile)
+    # dicToProcess = createDicCostsLists(dicFile, dicProducersLists)
+
+    if(dateMin == dateMax):
+        res = getCosts(dicToProcess, [dateMin], campus)
+        return res
+
+    else:
+        timeInterval = createTimeInterval(dicToProcess, dateMin, dateMax)
+        res = getCosts(dicToProcess, timeInterval, campus)
+        return res
 
 
 def getTransportationCosts(liste=['G. Charpak', 'Mines ICM', 'Mines Albi']):
@@ -193,11 +211,11 @@ def getTransportationCosts(liste=['G. Charpak', 'Mines ICM', 'Mines Albi']):
     return res
 
 
-def getCapacities(liste=['G. Charpak', 'Mines ICM', 'Mines Albi']):
+def getCapacities(dicProducers, liste=['G. Charpak', 'Mines ICM', 'Mines Albi']):
     CUR_DIR = Path(__file__).parent
     path = CUR_DIR.parent.parent / 'res' / 'routing' / 'Capacities.xlsx'
     dicCapacities = readCapacities(path, liste)
-    res = toDicCapacities(dicCapacities)
+    res = toDicCapacities(dicProducers, dicCapacities)
     return res
 
 

@@ -1,12 +1,5 @@
 import pulp
-# import Retailing as rt
-
-# Campus = ['G. Charpak', 'Mines ICM', 'Mines Albi']
-# Telecom sud Paris
-# Campus = ['G. Charpak', 'Mines ICM']
-dateMin = '04/01/22'
-dateMax = '05/01/22'
-
+from lib.routing import Retailing as rt
 
 # dicProducers = rt.getProducersLists()
 # Campus = dicProducers.keys()
@@ -19,7 +12,7 @@ dateMax = '05/01/22'
 def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dicVehicle):
     for camp in Campus:
         campus = [camp]
-        for day in ['04/01/22']:
+        for day in dicDemand[camp]:
             print('campus : ', camp, 'jour : ', day)
             supply = dicDemand[camp][day]
             # print('supply', supply)
@@ -35,12 +28,6 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
 
             transportation_costs = dicCostsMatrix[camp]
             # print('Matrix', transportation_costs)
-
-            print(campus)
-            print(Producers)
-            print(transportation_costs)
-            print(Capacity)
-            print(supply)
 
             costs = pulp.makeDict([campus + Producers, campus +
                                    Producers], transportation_costs, 0)
@@ -123,7 +110,7 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
                         <= longueur-1, "no_underloop_{0}{1}".format(subset_id, k)
 
             # The problem data is written to an .lp file
-            prob.writeLP("CoopainVRPProblem.lp")
+            # prob.writeLP("CoopainVRPProblem.lp")
 
             # The problem is solved using Cplex
             # prob.solve(pulp.getSolver('GUROBI_CMD', timeLimit=10))
