@@ -171,7 +171,7 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
 
         for j in GroupRoad[i]:
             cost[ind - 1] = cost[ind - 1] + costProcess(Road[j.getName], campus, transportation_costs)
-            if(cost[ind - 1] > max_distance):
+            if(cost[ind - 1] > max_distance or cost[ind - 1] == 0):
                 toDel[ind - 1] = ind - 1
     index = list(GroupRoad)
     for i in toDel:
