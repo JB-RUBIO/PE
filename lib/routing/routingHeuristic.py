@@ -4,7 +4,6 @@ import numpy as np
 import copy
 import Retailing as rt
 
-#TODO: transform matrix to place campus as last index
 max_distance = 150
 class Prod:
     def __init__(self, name, Id, Group = 0):
@@ -149,24 +148,12 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         addNode(Road[i], i, GroupRoad, Road, Producers, supply, SatisfiedDemand, Capacity, transportation_costs)
 
 
-    #Costs display
-    for i in Road: 
-        print("Coût de la route", i, ": ", costProcess(Road[i], campus, transportation_costs))
-    for i in SatisfiedDemand:
-        print("Demande de la route", i, ": ", SatisfiedDemand[i])
-
-
     #Roads enhacement 
-    for i in Road:
-        print(Road[i])
 
     for i in Road:
-        print("Le camion part de", i)
         Road[i] = two_opt(Road[i], transportation_costs)
-        print("Route empruntée :", two_opt(Road[i], transportation_costs))
-        print("Le coût est désormais de :", costProcess(Road[i], campus, transportation_costs))
 
-            #Add campus to roads
+    #Add campus to roads
     for i in Road:
         Road[i].append(Prod('Campus', -1))
 
@@ -176,13 +163,23 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
 
 
     ind = 0
+    toDel = np.zeros(len(GroupRoad), dtype = int)
+    toDel -= 1
     for i in GroupRoad:
         ind += 1
-        cost = 0
-        for j in GroupRoad[i]:
-            cost += costProcess(Road[j.getName], campus, transportation_costs)
-        print("Le coût du groupe ", ind, " est de ", cost)
+        cost = [0] * len(GroupRoad)
 
+        for j in GroupRoad[i]:
+            cost[ind - 1] = cost[ind - 1] + costProcess(Road[j.getName], campus, transportation_costs)
+            if(cost[ind - 1] > max_distance):
+                toDel[ind - 1] = ind - 1
+    index = list(GroupRoad)
+    for i in toDel:
+        if(toDel[i] == 1):
+            del GroupRoad[index[i]]
+            del cost[toDel[i]]
+
+    print(cost)
     return Road, GroupRoad
 
 
