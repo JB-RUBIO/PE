@@ -9,7 +9,7 @@ from lib.routing import Retailing as rt
 # dicVehicle = rt.getVehicles(dicCapacities)
 
 
-def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dicVehicle):
+def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dicVehicle, dist):
     for camp in Campus:
         campus = [camp]
         for day in dicDemand[camp]:
@@ -32,7 +32,7 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
             costs = pulp.makeDict([campus + Producers, campus +
                                    Producers], transportation_costs, 0)
 
-            distance_max = 200
+            distance_max = int(dist)
             Np = len(Producers)
 
             Vehicle = [(i, k) for i in campus + Producers for k in Producers]

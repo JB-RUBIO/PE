@@ -11,14 +11,13 @@ TITLE_LABEL = "Generate the delivery schedule"
 CAMPUS_LABEL = "Campus :"
 DATE_LABEL = "Date (dd/mm/yy) :"
 SOLVER_LABEL = "Method :"
+DIST_LABEL = "Max cost (min):"
 # dateMin = '04/01/22'
 # dateMax = '05/01/22'
 
 root = Tk()
-root.geometry('500x300')
+root.geometry('500x305')
 root.title(TITLE)
-# 5442
-
 
 dicFile = rt.createDicFile()
 dicToProcess = rt.createDicToProcess(dicFile)
@@ -36,6 +35,7 @@ def process():
     Campus = [entryCampus.get()]
     dateMin = entryDate.get()
     dateMax = entryDate.get()
+    dist = entryDist.get()
 
     dicDemand = rt.getDemand(dicToProcess, dateMin, dateMax, Campus)
     dicCostsMatrix = rt.getTransportationCosts(Campus)
@@ -44,11 +44,24 @@ def process():
 
     if entrySolver.get() == 'Solver':
         rs.solveWithSolver(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities, dicVehicle)
+                           dicCostsMatrix, dicCapacities, dicVehicle, dist)
+
+        b = Button(root, text="Execute", command=process)
+        b.place(x=220, y=230)
+        # showResults(Campus[0], dateMin, 'voici les résultats!')
     else:
-        print('en cours de dev')
+        print('en cours de dev...')
     print(dicDemand)
     return None
+
+
+def showResults(Campus, dateMin, txt):
+    res = Tk()
+    res.geometry('500x500')
+    res.title('Coop\'Pain_Delivery_Schedule_' + Campus + '_' + dateMin)
+    resLabel = Label(res, text=txt)
+    resLabel.pack()
+    res.mainloop()
 
 
 x_SmallOffest = 30
@@ -66,6 +79,9 @@ x_EntryDate, y_EntryDate = x_LabelDate, y_LabelDate + y_SmallOffset
 x_LabelSolver, y_LabelSolver = x_LabelCampus + x_BigOffest, y_LabelCampus
 x_EntrySolver, y_EntrySolver = x_LabelSolver, y_LabelSolver + y_SmallOffset
 
+x_LabelDist, y_LabelDist = x_LabelCampus + \
+    x_BigOffest, y_LabelCampus + y_BigOffset
+x_EntryDist, y_EntryDist = x_LabelDist, y_LabelDist + y_SmallOffset
 
 labelTitle = Label(root, text=TITLE_LABEL, font=('arial', 20, 'bold'))
 labelTitle.pack(side=TOP, fill=X)
@@ -88,7 +104,13 @@ entrySolver = ttk.Combobox(root, values=listeMethod)
 entrySolver.current(0)
 entrySolver.place(x=x_EntrySolver, y=y_EntrySolver)
 
-b = Button(root, text="Execute", command=process)
-b.place(x=220, y=230)
+labelDist = Label(root, text=DIST_LABEL, font=('arial', 13, 'bold'))
+labelDist.place(x=x_LabelDist, y=y_LabelDist)
+entryDist = Entry(root, width=23)
+entryDist.insert(END, 200)
+entryDist.place(x=x_EntryDist, y=y_EntryDist)
+
+buttonExec = Button(root, text="Execute", command=process)
+buttonExec.place(x=220, y=230)
 
 root.mainloop()
