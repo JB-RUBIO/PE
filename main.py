@@ -41,14 +41,14 @@ def process():
 
     if entrySolver.get() == 'Solver':
         rs.solveWithSolver(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities, dicVehicle, dist)
+                           dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
 
         # b = Button(root, text="Execute", command=process)
         # b.place(x=220, y=230)
         # showResults(Campus[0], dateMin, 'voici les résultats!')
     else:
         rh.driverHeuristic(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities, dist)
+                           dicCostsMatrix, dicCapacities, int(dist))
 
     print(dicDemand)
     return None

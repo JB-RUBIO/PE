@@ -41,7 +41,6 @@ def insertion_sort(array, compare_function):
 
 
 def costProcess(road, campus, transportation_costs):
-
     cost = 0
     lastNode = road[0]
     for i in road:
@@ -159,25 +158,12 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         addNode(Road[i], i, GroupRoad, Road, Producers, supply,
                 SatisfiedDemand, Capacity, transportation_costs, dist)
 
-    # Costs display
-    for i in Road:
-        print("Coût de la route", i, ": ", costProcess(
-            Road[i], campus, transportation_costs))
-    for i in SatisfiedDemand:
-        print("Demande de la route", i, ": ", SatisfiedDemand[i])
-
     # Roads enhacement
-    for i in Road:
-        print(Road[i])
 
     for i in Road:
-        print("Le camion part de", i)
         Road[i] = two_opt(Road[i], transportation_costs)
-        print("Route empruntée :", two_opt(Road[i], transportation_costs))
-        print("Le coût est désormais de :", costProcess(
-            Road[i], campus, transportation_costs))
 
-        # Add campus to roads
+    # Add campus to roads
     for i in Road:
         Road[i].append(Prod('Campus', -1))
 
@@ -186,14 +172,38 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         Road[i].append(Road[i][0])
 
     ind = 0
+    toDel = np.zeros(len(GroupRoad), dtype=int)
+    toDel -= 1
+    cost_min = dist
     for i in GroupRoad:
-        ind += 1
-        cost = 0
-        for j in GroupRoad[i]:
-            cost += costProcess(Road[j.getName], campus, transportation_costs)
-        print("Le coût du groupe ", ind, " est de ", cost)
 
-    return Road, GroupRoad
+        cost = [0] * len(GroupRoad)
+
+        for j in GroupRoad[i]:
+            cost[ind] = cost[ind] + \
+                costProcess(Road[j.getName], campus, transportation_costs)
+            if(cost[ind] > dist or cost[ind] == 0):
+                toDel[ind] = ind
+        ind += 1
+    index = list(GroupRoad)
+    best_ind = None
+    bestRoad = {}
+    for i in toDel[::-1]:
+        if(toDel[i] != -1):
+            del GroupRoad[index[i]]
+            del cost[toDel[i]]
+    if len(cost) == 0:
+        print("No solution found.")
+    else:
+        for i in range(len(cost)):
+            if cost_min > cost[i]:
+                cost_min = cost[i]
+                best_ind = i
+        for i in GroupRoad[index[best_ind]]:
+            bestRoad[i.getName] = Road[i.getName]
+
+    print(cost)
+    return bestRoad
 
 
 def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dist):
@@ -213,8 +223,7 @@ def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
 
             transportation_costs = dicCostsMatrix[camp]
             # print('Matrix', transportation_costs)
-            x, y = processWithHeuristic(
+            x = processWithHeuristic(
                 Producers, supply, Capacity, transportation_costs, camp, dist)
 
             print(x)
-            print(y)
