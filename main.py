@@ -40,10 +40,10 @@ def process():
     dicVehicle = rt.getVehicles(dicCapacities)
 
     if entrySolver.get() == 'Solver':
-        rs.solveWithSolver(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
-
-        # showResults(Campus[0], dateMin, 'voici les résultats!')
+        dicToPrint, cost = rs.solveWithSolver(dicProducers, Campus, dicDemand,
+                                              dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
+        # print(dicToPrint)
+        # showResults(Campus[0], dateMin, dicToPrint)
     else:
         try:
             dicToPrint = rh.driverHeuristic(dicProducers, Campus, dicDemand,
@@ -81,11 +81,19 @@ def showResults(Campus, dateMin, dicToPrint):
 
         strRes = '    '
         for producer in dicToPrint[route]:
-            strRes += ' --- ' + producer.getName
-        # strRes + ' end.'
-        Label(res, text=strRes, font=('arial', 12)).place(
-            x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
-        nRoute += 1
+            if type(producer) == rh.Prod:
+                strRes += ' --- ' + producer.getName
+            else:
+                strRes += ' --- ' + str(producer)
+
+            strRes + ' end.'
+            Label(res, text=strRes, font=('arial', 12)).place(
+                x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
+            nRoute += 1
+
+            Label(res, text=strRes, font=('arial', 12)).place(
+                x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
+            nRoute += 1
 
     res.mainloop()
 

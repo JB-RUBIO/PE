@@ -1,4 +1,5 @@
 import pulp
+from typing import Dict, List
 from lib.routing import Retailing as rt
 
 # dicProducers = rt.getProducersLists()
@@ -119,11 +120,44 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
             # The status of the solution is printed to the screen
             print("Status:", pulp.LpStatus[prob.status])
 
-            # Each significant variables is printed with it's resolved optimum value
+            # Each significant variables is in listeRoute
+            listeRoute = []
             for v in prob.variables():
-                if v.varValue:
-                    print(v.name, "=", v.varValue)
+                if v.varValue and v.name[:6] == 'Route_':
+                    listeRoute.append(v.name[6:])
+                lenRoute = len(listeRoute)
 
-            # The optimised objective function value is printed to the screen
-            print("Total Cost of Transportation = ",
-                  pulp.value(prob.objective))
+            # initialisation des dictionnaires
+            dictResultat: Dict[str, List[str]] = {}
+            dictRoute: Dict[str, List[str]] = {}
+            for i in range(lenRoute):
+                for j in range(len(listeRoute[i])):
+                    if listeRoute[i][-j-1:] in Producers:
+                        dictResultat[listeRoute[i][-j - 1:]] = []
+                        dictRoute[listeRoute[i][-j-1:]] = []
+
+            # remplissage de dictRoute
+            for i in range(lenRoute):
+                for j in range(len(listeRoute[i])):
+                    if listeRoute[i][-j-1:] in Producers:
+                        dictRoute[listeRoute[i][-j-1:]
+                                  ].append(listeRoute[i][:-j-2])
+
+            # remplissage de dictResultat
+            for vehicule in [*dictRoute]:
+                finBoucle = 0
+                visiteActuelle = vehicule
+                while (finBoucle == 0):
+                    for i in range(len(dictRoute[vehicule])):
+                        for j in range(len(dictRoute[vehicule][i])):
+                            if dictRoute[vehicule][i][:j] == visiteActuelle:
+                                dictResultat[vehicule].append(visiteActuelle)
+                                visiteActuelle = dictRoute[vehicule][i][j+1:]
+                                if visiteActuelle == vehicule:
+                                    finBoucle = 1
+    print('dic = ', dictResultat)
+    return dictResultat, pulp.value(prob.objective)
+
+    # The optimised objective function value is printed to the screen
+    # print("Total Cost of Transportation = ",
+    #       pulp.value(prob.objective))
