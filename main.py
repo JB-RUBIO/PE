@@ -42,14 +42,13 @@ def process():
     if entrySolver.get() == 'Solver':
         dicToPrint, cost = rs.solveWithSolver(dicProducers, Campus, dicDemand,
                                               dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
-        # print(dicToPrint)
-        # showResults(Campus[0], dateMin, dicToPrint)
+        showResults(Campus[0], dateMin, dicToPrint, cost)
     else:
         try:
-            dicToPrint = rh.driverHeuristic(dicProducers, Campus, dicDemand,
-                                            dicCostsMatrix, dicCapacities, int(dist))
+            dicToPrint, cost = rh.driverHeuristic(dicProducers, Campus, dicDemand,
+                                                  dicCostsMatrix, dicCapacities, int(dist))
             print(dicToPrint)
-            showResults(Campus[0], dateMin, dicToPrint)
+            showResults(Campus[0], dateMin, dicToPrint, cost)
         except KeyError:
             print('The heuristic can\'t find solution with parameter : \'Max cost\' = ', dist,
                   ' minutes. Please, try an other value for \'Max cost\' or use the solver for a better result.')
@@ -57,7 +56,7 @@ def process():
     return None
 
 
-def showResults(Campus, dateMin, dicToPrint):
+def showResults(Campus, dateMin, dicToPrint, cost):
     res = Tk()
     res.geometry('900x400')
     res.title('Coop\'Pain_Delivery_Schedule_' + Campus + '_' + dateMin)
@@ -86,14 +85,14 @@ def showResults(Campus, dateMin, dicToPrint):
             else:
                 strRes += ' --- ' + str(producer)
 
-            strRes + ' end.'
-            Label(res, text=strRes, font=('arial', 12)).place(
-                x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
-            nRoute += 1
+        strRes + ' end.'
+        Label(res, text=strRes, font=('arial', 12)).place(
+            x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
+        nRoute += 1
 
-            Label(res, text=strRes, font=('arial', 12)).place(
-                x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
-            nRoute += 1
+    strCost = 'Total cost = ' + str(cost)
+    Label(res, text=strCost, font=('arial', 12, 'bold')).place(
+        x=x_LabelResRoute, y=y_LabelResRoute + nRoute * y_Offset + 20)
 
     res.mainloop()
 

@@ -118,7 +118,7 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
             prob.solve(pulp.PULP_CBC_CMD(fracGap=0))
 
             # The status of the solution is printed to the screen
-            print("Status:", pulp.LpStatus[prob.status])
+            # print("Status:", pulp.LpStatus[prob.status])
 
             # Each significant variables is in listeRoute
             listeRoute = []
@@ -151,12 +151,15 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
                     for i in range(len(dictRoute[vehicule])):
                         for j in range(len(dictRoute[vehicule][i])):
                             if dictRoute[vehicule][i][:j] == visiteActuelle:
-                                dictResultat[vehicule].append(visiteActuelle)
-                                visiteActuelle = dictRoute[vehicule][i][j+1:]
-                                if visiteActuelle == vehicule:
-                                    finBoucle = 1
+                                if (finBoucle == 0):
+                                    dictResultat[vehicule].append(
+                                        visiteActuelle)
+                                    visiteActuelle = dictRoute[vehicule][i][j+1:]
+                                    if visiteActuelle == vehicule:
+                                        finBoucle = 1
+                dictResultat[vehicule].append(visiteActuelle)
 
-    print('dic = ', dictResultat)
+    # print('dic = ', dictResultat)
     return dictResultat, pulp.value(prob.objective)
 
     # The optimised objective function value is printed to the screen

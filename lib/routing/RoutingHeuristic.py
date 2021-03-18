@@ -106,11 +106,8 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
     Producers = []
     for i in readProd:
         Producers.append(Prod(i, int(i[5:])))
-    Np = len(Producers)
 
     Road = {}
-    RoadCost = []
-    finalRoad = {}
     SatisfiedDemand = {}
     total_demand = 0
     for i in supply:
@@ -203,7 +200,7 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         for i in GroupRoad[index[best_ind]]:
             bestRoad[i.getName] = Road[i.getName]
 
-    return bestRoad
+    return bestRoad, cost
 
 
 def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dist):
