@@ -155,6 +155,7 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
                                 visiteActuelle = dictRoute[vehicule][i][j+1:]
                                 if visiteActuelle == vehicule:
                                     finBoucle = 1
+
     print('dic = ', dictResultat)
     return dictResultat, pulp.value(prob.objective)
 
