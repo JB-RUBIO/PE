@@ -59,13 +59,13 @@ def process():
 
 def showResults(Campus, dateMin, dicToPrint):
     res = Tk()
-    res.geometry('700x700')
+    res.geometry('900x400')
     res.title('Coop\'Pain_Delivery_Schedule_' + Campus + '_' + dateMin)
     x_LabelResRoute, y_LabelResRoute = 10, 60
     x_Offset, y_Offset = 30, 60
 
     strResTitle = ('Delivery schedule for the campus ' +
-                   Campus + ' at the date ' + dateMin + '.')
+                   Campus + ' on ' + dateMin + '.')
 
     Label(res, text=strResTitle,  font=('arial', 14, 'bold')).pack()
     strResRoutes = str(len(dicToPrint)) + ' route(s) needed :'
