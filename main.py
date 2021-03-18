@@ -3,14 +3,14 @@ from tkinter import ttk
 # from lib.formatter import DataGenerator as dg
 from lib.routing import Retailing as rt
 from lib.routing import RoutingSolver as rs
-from lib.routing import routingheuristic as rh
+from lib.routing import RoutingHeuristic as rh
 
 TITLE = "Coop'Pain 95 edition"
 TITLE_LABEL = "Generate the delivery schedule"
 CAMPUS_LABEL = "Campus :"
 DATE_LABEL = "Date (dd/mm/yy) :"
 SOLVER_LABEL = "Method :"
-DIST_LABEL = "Max cost (min):"
+DIST_LABEL = "Max cost (minutes):"
 # dateMin = '04/01/22'
 # dateMax = '05/01/22'
 
@@ -50,8 +50,7 @@ def process():
         # showResults(Campus[0], dateMin, 'voici les résultats!')
     else:
         rh.driverHeuristic(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities)
-        # print('en cours de dev...')
+                           dicCostsMatrix, dicCapacities, dist)
 
     print(dicDemand)
     return None
