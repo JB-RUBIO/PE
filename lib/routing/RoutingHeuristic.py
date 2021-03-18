@@ -200,7 +200,12 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         for i in GroupRoad[index[best_ind]]:
             bestRoad[i.getName] = Road[i.getName]
 
-    return bestRoad, cost
+    print(type(cost))
+    res = 0
+    for element in cost:
+        res += element
+
+    return bestRoad, res
 
 
 def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dist):
@@ -219,5 +224,6 @@ def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
 
             transportation_costs = dicCostsMatrix[camp]
             # print('Matrix', transportation_costs)
+
             return processWithHeuristic(
                 Producers, supply, Capacity, transportation_costs, camp, dist)

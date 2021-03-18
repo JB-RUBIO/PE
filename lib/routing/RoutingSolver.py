@@ -159,9 +159,4 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
                                         finBoucle = 1
                 dictResultat[vehicule].append(visiteActuelle)
 
-    # print('dic = ', dictResultat)
     return dictResultat, pulp.value(prob.objective)
-
-    # The optimised objective function value is printed to the screen
-    # print("Total Cost of Transportation = ",
-    #       pulp.value(prob.objective))
