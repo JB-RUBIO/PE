@@ -11,8 +11,6 @@ CAMPUS_LABEL = "Campus :"
 DATE_LABEL = "Date (dd/mm/yy) :"
 SOLVER_LABEL = "Method :"
 DIST_LABEL = "Max cost (minutes):"
-# dateMin = '04/01/22'
-# dateMax = '05/01/22'
 
 root = Tk()
 root.geometry('500x305')
