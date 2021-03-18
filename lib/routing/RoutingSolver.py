@@ -13,7 +13,7 @@ def solveWithSolver(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
     for camp in Campus:
         campus = [camp]
         for day in dicDemand[camp]:
-            print('campus : ', camp, 'jour : ', day)
+            print('campus : ', camp, ', jour : ', day)
             supply = dicDemand[camp][day]
             # print('supply', supply)
 

@@ -20,8 +20,8 @@ class Prod:
     def __repr__(self):
         return "%s" % self.name
 
-    def __str__(self):
-        return "Producteur %s" % self.Id
+    # def __str__(self):
+    #     return "Producteur %s" % self.Id
 
     @property
     def getName(self):
@@ -193,7 +193,8 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
             del GroupRoad[index[i]]
             del cost[toDel[i]]
     if len(cost) == 0:
-        print("No solution found.")
+        raise KeyError
+        # print("No solution found.")
     else:
         for i in range(len(cost)):
             if cost_min > cost[i]:
@@ -202,7 +203,6 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         for i in GroupRoad[index[best_ind]]:
             bestRoad[i.getName] = Road[i.getName]
 
-    print(cost)
     return bestRoad
 
 
@@ -211,9 +211,8 @@ def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
     for camp in Campus:
         # campus = [camp]
         for day in dicDemand[camp]:
-            print('campus : ', camp, 'jour : ', day)
+            print('campus : ', camp, ', jour : ', day)
             supply = dicDemand[camp][day]
-            print('supply', supply)
 
             Producers = dicProducers[camp]
             # print('producers', Producers)
@@ -223,7 +222,5 @@ def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapaciti
 
             transportation_costs = dicCostsMatrix[camp]
             # print('Matrix', transportation_costs)
-            x = processWithHeuristic(
+            return processWithHeuristic(
                 Producers, supply, Capacity, transportation_costs, camp, dist)
-
-            print(x)

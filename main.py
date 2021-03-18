@@ -43,23 +43,50 @@ def process():
         rs.solveWithSolver(dicProducers, Campus, dicDemand,
                            dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
 
-        # b = Button(root, text="Execute", command=process)
-        # b.place(x=220, y=230)
         # showResults(Campus[0], dateMin, 'voici les résultats!')
     else:
-        rh.driverHeuristic(dicProducers, Campus, dicDemand,
-                           dicCostsMatrix, dicCapacities, int(dist))
-
-    print(dicDemand)
+        try:
+            dicToPrint = rh.driverHeuristic(dicProducers, Campus, dicDemand,
+                                            dicCostsMatrix, dicCapacities, int(dist))
+            print(dicToPrint)
+            showResults(Campus[0], dateMin, dicToPrint)
+        except KeyError:
+            print('The heuristic can\'t find solution with parameter : \'Max cost\' = ', dist,
+                  ' minutes. Please, try an other value for \'Max cost\' or use the solver for a better result.')
+    print('The demand is : ', dicDemand)
     return None
 
 
-def showResults(Campus, dateMin, txt):
+def showResults(Campus, dateMin, dicToPrint):
     res = Tk()
-    res.geometry('500x500')
+    res.geometry('700x700')
     res.title('Coop\'Pain_Delivery_Schedule_' + Campus + '_' + dateMin)
-    resLabel = Label(res, text=txt)
-    resLabel.pack()
+    x_LabelResRoute, y_LabelResRoute = 10, 60
+    x_Offset, y_Offset = 30, 60
+
+    strResTitle = ('Delivery schedule for the campus ' +
+                   Campus + ' at the date ' + dateMin + '.')
+
+    Label(res, text=strResTitle,  font=('arial', 14, 'bold')).pack()
+    strResRoutes = str(len(dicToPrint)) + ' route(s) needed :'
+
+    Label(res, text=strResRoutes,  font=('arial', 12, 'bold')).place(
+        x=x_LabelResRoute, y=y_LabelResRoute)
+
+    nRoute = 1
+    for route in dicToPrint:
+        currentRoute = 'Route ' + str(nRoute) + ' :'
+        Label(res, text=currentRoute,  font=('arial', 12)).place(
+            x=x_LabelResRoute, y=y_LabelResRoute + nRoute * y_Offset)
+
+        strRes = '    '
+        for producer in dicToPrint[route]:
+            strRes += ' --- ' + producer.getName
+        # strRes + ' end.'
+        Label(res, text=strRes, font=('arial', 12)).place(
+            x=x_LabelResRoute + x_Offset, y=y_LabelResRoute + nRoute * y_Offset + 20)
+        nRoute += 1
+
     res.mainloop()
 
 
