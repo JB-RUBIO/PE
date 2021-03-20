@@ -44,6 +44,7 @@ def process():
         dicToPrint, cost = rs.solveWithSolver(dicProducers, Campus, dicDemand,
                                               dicCostsMatrix, dicCapacities, dicVehicle, int(dist))
         processTime = time.time() - startTime
+        print(dicToPrint)
         showResults(Campus[0], dateMin, dicToPrint,
                     cost, processTime, entrySolver.get())
     else:
