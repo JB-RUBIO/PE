@@ -196,6 +196,7 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
         raise KeyError
         # print("No solution found.")
     else:
+        index = list(GroupRoad)
         for i in range(len(cost)):
             if cost_min > cost[i]:
                 cost_min = cost[i]
