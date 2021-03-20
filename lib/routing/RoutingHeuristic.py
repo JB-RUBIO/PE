@@ -172,27 +172,32 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
     toDel = np.zeros(len(GroupRoad), dtype=int)
     toDel -= 1
     cost_min = dist
+
+    cost = [0] * len(GroupRoad)
     for i in GroupRoad:
-
-        cost = [0] * len(GroupRoad)
-
+        if(GroupCapacity[ind] < total_demand):
+            toDel[ind] = ind
         for j in GroupRoad[i]:
             cost[ind] = cost[ind] + \
                 costProcess(Road[j.getName], campus, transportation_costs)
             if(cost[ind] > dist or cost[ind] == 0):
                 toDel[ind] = ind
         ind += 1
+
     index = list(GroupRoad)
     best_ind = None
     bestRoad = {}
-    for i in toDel[::-1]:
-        if(toDel[i] != -1):
+    deleted = 0
+    for i in toDel:
+        if(i != -1):
             del GroupRoad[index[i]]
-            del cost[toDel[i]]
+            del cost[i - deleted]
+            deleted += 1
     if len(cost) == 0:
         raise KeyError
         # print("No solution found.")
     else:
+        index = list(GroupRoad)
         for i in range(len(cost)):
             if cost_min > cost[i]:
                 cost_min = cost[i]
@@ -201,11 +206,8 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
             bestRoad[i.getName] = Road[i.getName]
 
     print(type(cost))
-    res = 0
-    for element in cost:
-        res += element
 
-    return bestRoad, res
+    return bestRoad, cost[best_ind]
 
 
 def driverHeuristic(dicProducers, Campus, dicDemand, dicCostsMatrix, dicCapacities, dist):
