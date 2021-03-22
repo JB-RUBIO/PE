@@ -150,12 +150,13 @@ def getOrders(dicToPrint, campus, date):
                 print('something')
                 # print(type(dicOrders[campus].info()))
                 if producer != 'G._Charpak':
-                    print(campus)
-                    print((dicOrders[campus].loc[dicOrders[campus]
-                                                 ['date'] == '04/01/2022', producer]))
+                    date = pd.to_datetime(date)
+                    buffer = dicOrders[campus].loc[pd.to_datetime(
+                        dicOrders[campus]['date']) == date, producer]
+                    print(('buffer = ', buffer, ' finished.'))
             res.append(buffer)
     # return res
-    print(res)
+    print('res = ', res, 'res finished')
 
 
 def solveWithSolver(Arrival_Time, epsilon, NB_Clients, Personnes_Distribution, Tps_Distribution, Lmax):
