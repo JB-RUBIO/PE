@@ -93,8 +93,6 @@ def addNode(road, group, GroupRoad, Road, Producers, supply, SatisfiedDemand, Ca
                 cheaper = 0
                 for j in GroupRoad[group]:
                     if(cost > transportation_costs[j.Id+1][i.Id+1]) and (SatisfiedDemand[j.getName] < Capacity[j.getName]):
-                        print("Cout ", j, " vers ", i, " = ",
-                              transportation_costs[j.Id+1][i.Id+1])
                         cost = transportation_costs[j.Id+1][i.Id+1]
                         cheaper = copy.deepcopy(j)
                 Road[cheaper.getName].append(i)
@@ -204,8 +202,7 @@ def processWithHeuristic(readProd, supply, Capacity, transportation_costs, campu
                 best_ind = i
         for i in GroupRoad[index[best_ind]]:
             bestRoad[i.getName] = Road[i.getName]
-
-    print(type(cost))
+    print(total_demand)
 
     return bestRoad, cost[best_ind]
 
